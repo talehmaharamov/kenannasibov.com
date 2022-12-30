@@ -14,5 +14,6 @@
 @include('sweetalert::alert')
 @include('backend.includes.scripts')
 @yield('scripts')
+@include('backend.includes.footer')
 </body>
 </html>
