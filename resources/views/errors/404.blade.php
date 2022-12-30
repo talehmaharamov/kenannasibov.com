@@ -1,5 +1,5 @@
 @extends('master.frontend')
-@section('content')
+@section('front')
     <section class="error-404 section-padding pb-5">
         <div class="container">
             <div class="row justify-content-center align-items-center">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="broken-img mt-5 mt-lg-0">
+                    <div class="broken-img mt-5 mt-3  d-flex justify-content-center align-items-center">
                         <img src="{{asset('frontend/images/broken.png')}}" alt="" class="img-fluid">
                     </div>
                 </div>

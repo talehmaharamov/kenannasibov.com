@@ -1,55 +1,54 @@
 <?php
-
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\Create\AdminRequest as CreateRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-
+use Symfony\Component\HttpFoundation\Response;
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:admin']);
-    }
-
     public function index()
     {
-        $admins = User::whereHas("roles", function ($query) {
-            $query->where("name", "admin");
-        })->get();
-        return view('backend.admins.index', get_defined_vars());
+        abort_if(Gate::denies('users index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $users = User::all();
+        return view('backend.users.index', get_defined_vars());
     }
 
     public function create()
     {
-        return view('backend.admins.create');
+        abort_if(Gate::denies('users create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('backend.users.create');
     }
 
     public function delAdmin($id)
     {
+        abort_if(Gate::denies('users delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             User::find($id)->delete();
-            return redirect()->route('backend.admins.index')->with('successMessage', __('messages.delete-success'));
+            alert()->success(__('messages.success'));
+            return redirect()->route('backend.users.index');
         } catch (\Exception $e) {
-            return redirect()->route('backend.admins.index')->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'.$e));
+            return redirect()->route('backend.users.index');
         }
     }
 
     public function store(CreateRequest $request)
     {
+        abort_if(Gate::denies('users create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-            $user->assignRole('admin');
-            return redirect()->route('backend.admins.index')->with('successMessage', __('messages.add-success'));
+            alert()->success(__('messages.success'));
+            return redirect()->route('backend.users.index');
         } catch (\Exception $e) {
-            return redirect()->route('backend.admins.index')->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->route('backend.users.index');
         }
     }
 }

@@ -8,33 +8,34 @@ use App\Models\DirectorTranslation;
 use App\Models\SiteLanguage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class DirectorController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:admin']);
-    }
-
     public function index()
     {
+        abort_if(Gate::denies('directors index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $directors = Director::all();
         return view('backend.directors.index', get_defined_vars());
     }
 
     public function create()
     {
+        abort_if(Gate::denies('directors create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.directors.create');
     }
 
     public function edit($id)
     {
+        abort_if(Gate::denies('directors edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $director = Director::find($id);
         return view('backend.directors.edit', get_defined_vars());
     }
 
     public function update(Request $request, Director $director)
     {
+        abort_if(Gate::denies('directors edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             DB::transaction(function () use ($request, $director) {
                 if ($request->hasFile('photo')) {
@@ -44,18 +45,20 @@ class DirectorController extends Controller
                 foreach (active_langs() as $lang) {
                     $director->translate($lang->code)->name = $request->name[$lang->code];
                     $director->translate($lang->code)->position = $request->position[$lang->code];
-                    $director->translate($lang->code)->description = $request->description[$lang->code];
                 }
                 $director->save();
             });
-            return redirect(route('backend.directors.index'))->with('successMessage', __('messages.success'));
+            alert()->success(__('messages.success'));
+            return redirect(route('backend.directors.index'));
         } catch (\Exception $e) {
-            return redirect(route('backend.directors.index'))->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect(route('backend.directors.index'));
         }
     }
 
     public function directorStatus($id)
     {
+        abort_if(Gate::denies('directors edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $status = Director::where('id', $id)->value('status');
         if ($status == 1) {
             Director::where('id', $id)->update(['status' => 0]);
@@ -67,17 +70,21 @@ class DirectorController extends Controller
 
     public function delDirector($id)
     {
+        abort_if(Gate::denies('directors delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             unlink(Director::find($id)->photo);
             Director::find($id)->delete();
-            return redirect()->back()->with('successMessage', __('messages.delete-success'));
+            alert()->success(__('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->back();
         }
     }
 
     public function store(Request $request)
     {
+        abort_if(Gate::denies('directors create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             $langCodes = SiteLanguage::where('status', 1)->get();
             $director = new Director();
@@ -88,14 +95,15 @@ class DirectorController extends Controller
                 $trans = new DirectorTranslation();
                 $trans->name = $request->name[$lc->code];
                 $trans->position = $request->position[$lc->code];
-                $trans->description = $request->description[$lc->code];
                 $trans->locale = $lc->code;
                 $trans->director_id = $director->id;
                 $trans->save();
             }
-            return redirect()->route('backend.directors.index')->with('successMessage', __('messages.add-success'));
+            alert()->success(__('messages.success'));
+            return redirect()->route('backend.directors.index');
         } catch (\Exception $e) {
-            return redirect()->route('backend.directors.index')->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->route('backend.directors.index');
         }
     }
 }

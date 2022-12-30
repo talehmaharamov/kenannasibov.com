@@ -14,13 +14,10 @@ return new class extends Migration
             $table->string('locale')->index();
             $table->string('name');
             $table->string('position');
-            $table->text('description');
-
             $table->unique(['director_id', 'locale']);
             $table->foreign('director_id')->references('id')->on('directors')->onDelete('cascade');
         });
     }
-
     public function down()
     {
         Schema::dropIfExists('director_translations');

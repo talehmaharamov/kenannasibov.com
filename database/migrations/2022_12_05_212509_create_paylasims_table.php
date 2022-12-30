@@ -12,6 +12,8 @@ return new class extends Migration {
             $table->string('photo')->nullable();
             $table->string('category_id');
             $table->string('user_id');
+            $table->boolean('admin_status');
+            $table->integer('admin_id');
             $table->integer('view_count');
             $table->boolean('status');
             $table->timestamps();

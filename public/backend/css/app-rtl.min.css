@@ -532,7 +532,7 @@ body[data-layout=horizontal] .footer {
   text-transform: uppercase;
   color: #505d69;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
+  font-family: Poppins, Helvetica, "sans-serif";
   opacity: 0.5;
 }
 
@@ -1112,10 +1112,10 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;

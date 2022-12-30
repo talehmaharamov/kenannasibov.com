@@ -1,24 +1,22 @@
 @extends('master.backend')
+@section('title',__('frontend.directors'))
 @section('content')
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">@lang('frontend.directors')</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-xl-9">
                         <div class="card">
                             <form action="{{ route('backend.directors.store') }}"
-                                  class="custom-validation" method="post" enctype="multipart/form-data">
+                                  class="needs-validation" novalidate method="post" enctype="multipart/form-data">
                                 @csrf
-                                {{--                                @method('PUT')--}}
                                 <div class="card-body">
+                                    <div class="col-12">
+                                        <div
+                                            class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                            <h4 class="mb-sm-0">@lang('frontend.directors')</h4>
+                                        </div>
+                                    </div>
                                     <ul class="nav nav-pills nav-justified" role="tablist">
                                         @foreach(active_langs() as $lan)
                                             <li class="nav-item waves-effect waves-light">
@@ -38,41 +36,44 @@
                                                  role="tabpanel">
                                                 <div class="form-group row">
                                                     <div class="mb-3">
-                                                        <label>@lang('backend.name'):</label>
-                                                        <div>
-                                                            <input name="name[{{ $lan->code }}]" type="text"
-                                                                   class="form-control"
-                                                                   required="" data-parsley-minlength="6"
-                                                                   placeholder="@lang('backend.name')">
+                                                        <label>@lang('backend.name') <span class="text-danger">*</span></label>
+                                                        <input name="name[{{ $lan->code }}]" type="text"
+                                                               class="form-control"
+                                                               required="" data-parsley-minlength="6"
+                                                               placeholder="@lang('backend.name')">
+                                                        <div class="valid-feedback">
+                                                            @lang('backend.name') @lang('messages.is-correct')
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            @lang('backend.name') @lang('messages.not-correct')
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label>@lang('backend.position'):</label>
-                                                        <div>
-                                                            <input name="position[{{ $lan->code }}]" type="text"
-                                                                   class="form-control"
-                                                                   required="" data-parsley-minlength="6"
-                                                                   placeholder="@lang('backend.position')">
+                                                        <label>@lang('backend.position') <span class="text-danger">*</span></label>
+                                                        <input name="position[{{ $lan->code }}]" type="text"
+                                                               class="form-control"
+                                                               required="" data-parsley-minlength="6"
+                                                               placeholder="@lang('backend.position')">
+                                                        <div class="valid-feedback">
+                                                            @lang('backend.position') @lang('messages.is-correct')
                                                         </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label>@lang('backend.description'):</label>
-                                                        <div>
-                                                            <input name="description[{{ $lan->code }}]" type="text"
-                                                                   class="form-control" data-parsley-minlength="6"
-                                                                   placeholder="@lang('backend.description')">
+                                                        <div class="invalid-feedback">
+                                                            @lang('backend.position') @lang('messages.not-correct')
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
-
                                         <div class="mb-3">
-                                            <label>@lang('backend.photo'):</label>
-                                            <div>
-                                                <input name="photo" type="file" class="form-control"
-                                                       data-parsley-maxlength="6"
-                                                       required="">
+                                            <label>@lang('backend.photo') <span class="text-danger">*</span></label>
+                                            <input name="photo" type="file" class="form-control"
+                                                   data-parsley-maxlength="6"
+                                                   required="">
+                                            <div class="valid-feedback">
+                                                @lang('backend.photo') @lang('messages.is-correct')
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                @lang('backend.photo') @lang('messages.not-correct')
                                             </div>
                                         </div>
                                     </div>

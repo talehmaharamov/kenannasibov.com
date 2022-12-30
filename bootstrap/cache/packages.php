@@ -6,6 +6,17 @@
       0 => 'Astrotomic\\Translatable\\TranslatableServiceProvider',
     ),
   ),
+  'intervention/image' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\ImageServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Facades\\Image',
+    ),
+  ),
   'jenssegers/agent' => 
   array (
     'providers' => 
@@ -52,6 +63,17 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
+  'laravolt/avatar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravolt\\Avatar\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Avatar' => 'Laravolt\\Avatar\\Facade',
+    ),
+  ),
   'livewire/livewire' => 
   array (
     'providers' => 
@@ -82,6 +104,35 @@
     'providers' => 
     array (
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    ),
+  ),
+  'realrashid/sweet-alert' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
+    ),
+  ),
+  'spatie/laravel-activitylog' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
+    ),
+  ),
+  'spatie/laravel-analytics' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Analytics\\AnalyticsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Analytics' => 'Spatie\\Analytics\\AnalyticsFacade',
     ),
   ),
   'spatie/laravel-ignition' => 

@@ -1,3 +1,3 @@
 <meta charset="utf-8" />
-<title>Dırnıs Xeyriyyə Cəmiyyəti - @lang('backend.ap')</title>
+<title>@yield('title')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

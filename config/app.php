@@ -14,7 +14,7 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Baku',
 
     'locale' => 'az',
 
@@ -63,12 +63,17 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
+        Laravolt\Avatar\ServiceProvider::class,
     ],
 
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Avatar'    => Laravolt\Avatar\Facade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
     ])->toArray(),
 
 ];

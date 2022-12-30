@@ -11,6 +11,7 @@
 </div>
 @include('backend.includes.sidebar')
 @yield('content')
+@include('sweetalert::alert')
 @include('backend.includes.scripts')
 @yield('scripts')
 </body>

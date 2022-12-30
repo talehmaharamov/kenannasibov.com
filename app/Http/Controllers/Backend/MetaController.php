@@ -5,37 +5,40 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\MetaTag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class MetaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:admin|seo']);
-    }
-
     public function index()
     {
+        abort_if(Gate::denies('seo-tags index'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $metaTags = MetaTag::all();
         return view('backend.tags.index', get_defined_vars());
     }
 
     public function create()
     {
+        abort_if(Gate::denies('seo-tags create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.tags.create');
     }
 
     public function delSeo($id)
     {
+        abort_if(Gate::denies('seo-tags delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             MetaTag::find($id)->delete();
-            return redirect()->back()->with('successMessage', __('messages.success'));
+            alert()->success(__('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->back();
         }
     }
 
     public function seoStatus($id)
     {
+        abort_if(Gate::denies('seo-tags edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $status = MetaTag::where('id', $id)->value('status');
         if ($status == 1) {
             MetaTag::where('id', $id)->update(['status' => 0]);
@@ -47,6 +50,7 @@ class MetaController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(Gate::denies('seo-tags create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             MetaTag::create([
                 'attribute' => $request->attribute,
@@ -54,23 +58,28 @@ class MetaController extends Controller
                 'content' => $request->content1,
                 'status' => 1
             ]);
-            return redirect()->back()->with('successMessage', __('messages.success'));
+            alert()->success(__('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->back();
         }
     }
 
     public function update(Request $request, $id)
     {
+        abort_if(Gate::denies('seo-tags edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
             MetaTag::find($id)->update([
                 'attribute' => $request->attribute,
                 'attribute_name' => $request->attribute_name,
                 'content' => $request->content1,
             ]);
-            return redirect()->back()->with('successMessage', __('messages.success'));
+            alert()->success(__('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('errorMessage', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->back();
         }
     }
 }

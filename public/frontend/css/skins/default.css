@@ -3845,8 +3845,8 @@ html[dir="rtl"] .tabs.tabs-vertical.tabs-right .nav-tabs li .nav-link.active:foc
 .list.list-icons li a:first-child > [class*="fa-"]:first-child,
 .list.list-icons li > .icons:first-child,
 .list.list-icons li a:first-child > .icons:first-child {
-	color: #246429;
-	border-color: #246429;
+    color: black;
+    opacity: .7;
 }
 
 .list.list-icons.list-icons-style-3 li > [class*="fa-"]:first-child,

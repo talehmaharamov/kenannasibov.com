@@ -1,3 +1,8 @@
+// $(document).ready(function() {
+//     $('#datatable-buttons').DataTable( {
+//         "order": [[ 0, "desc" ]]
+//     } );
+// } );
 !function (n) {
     "use strict";
 
@@ -51,3 +56,8 @@
         t(e.target.id)
     }), Waves.init()
 }(jQuery);
+
+$('#check-all').click(function()
+{
+    $('input[type=checkbox]').prop('checked', $(this).prop('checked'));
+});

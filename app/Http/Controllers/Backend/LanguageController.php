@@ -13,14 +13,9 @@ class LanguageController extends Controller
 
     public function switchLang($lang)
     {
-//        dd($lang);
-//        app()->setLocale($lang);
-        App::setLocale($lang);
-
-//        if (array_key_exists($lang, Config::get('languages'))) {
-//            Session::put('applocale', $lang);
-//            App::setLocale($lang);
-//        }
+        $this->middleware('backendLanguage');
+        app()->setLocale($lang);
+        session()->put('blang', $lang);
         return redirect()->back();
     }
 

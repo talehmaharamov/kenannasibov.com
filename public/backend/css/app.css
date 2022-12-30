@@ -67,7 +67,7 @@
 }
 
 .navbar-brand-box {
-    padding: 0 1.5rem;
+    /*padding: 0 1.5rem;*/
     text-align: center;
     width: 240px;
 }
@@ -524,7 +524,7 @@ body[data-layout=horizontal] .footer {
 
 #sidebar-menu .has-arrow:after {
     content: "\f0140";
-    font-family: "Material Design Icons";
+    font-family: Poppins, Helvetica, "sans-serif";
     display: block;
     float: left;
     -webkit-transition: -webkit-transform 0.2s;
@@ -533,17 +533,35 @@ body[data-layout=horizontal] .footer {
     transition: transform 0.2s, -webkit-transform 0.2s;
     font-size: 1rem;
 }
+.wbb-all{
+word-break: break-word;
+}
+
+.content-post p img{
+    width: 100%; !important;
+}
+
+.h1-posts{
+    font-size: 1.8em; !important;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 33px;
+}
+
+.footer-p {
+    color: #777 !important;
+}
 
 #sidebar-menu ul li a {
     display: block;
     padding: 0.625rem 1.5rem;
-    /*color: #6c757d;*/
-    color: black;
+    color: black; !important;
     position: relative;
     font-size: 13.3px;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
-    font-family: "Inter", sans-serif;
+    /*font-family: "Inter", sans-serif;*/
+    font-family: Poppins, Helvetica, "sans-serif";
     font-weight: 500;
 }
 
@@ -598,22 +616,25 @@ body[data-layout=horizontal] .footer {
     cursor: default;
     font-size: 11px;
     text-transform: uppercase;
-    color: #505d69;
+    color: #3c5f2c;
     font-weight: 600;
-    font-family: "Inter", sans-serif;
-    opacity: 0.5;
+    font-family: Poppins, Helvetica, "sans-serif";
+    opacity: 1;
 }
 
 .mm-active {
-    color: #0f9cf3 !important;
+    color: #3c5f2c !important;
+
 }
 
 .mm-active > a {
-    color: #0f9cf3 !important;
+    /*color: #0f9cf3 !important;*/
+    color: #3c5f2c !important;
+
 }
 
 .mm-active > a i {
-    color: #0f9cf3 !important;
+    color: #3c5f2c !important;
 }
 
 .mm-active > i {
@@ -621,7 +642,9 @@ body[data-layout=horizontal] .footer {
 }
 
 .mm-active .active {
-    color: #0f9cf3 !important;
+    /*color: #0f9cf3 !important;*/
+    color: #252b3b !important;
+
 }
 
 .mm-active .active i {
@@ -1080,8 +1103,8 @@ body[data-sidebar=colored] .menu-title {
     font-size: 15px;
     position: relative;
     padding: 1rem 1.3rem;
-    color: #6c757d;
-    font-family: "Inter", sans-serif;
+    /*color: #6c757d;*/
+    font-family: Poppins, Helvetica, "sans-serif";
 }
 
 .topnav .navbar-nav .nav-link i {
@@ -1579,7 +1602,7 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
 }
 
 .font-family-secondary {
-    font-family: "Inter", sans-serif;
+    font-family: Poppins, Helvetica, "sans-serif";
 }
 
 .font-size-10 {
@@ -2248,6 +2271,10 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
     .fc .fc-toolbar {
         display: block;
     }
+    .navbar-brand-box {
+        background-color: #252b3b; !important;
+    }
+
 }
 
 .fc .fc-toolbar h2 {
@@ -3042,7 +3069,7 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
 .select2-result-repository__stargazers .fa.fa-flash::before,
 .select2-result-repository__watchers .fa.fa-flash::before {
     content: "\f0e7";
-    font-family: "Font Awesome 5 Free";
+    font-family: Poppins, Helvetica, "sans-serif";
 }
 
 .select2-results__option--highlighted .select2-result-repository__forks,
@@ -3119,7 +3146,7 @@ input[switch] + label:after {
 }
 
 input[switch]:checked + label {
-    background-color: #0f9cf3;
+    background-color: #252b3b;
 }
 
 input[switch]:checked + label {
@@ -3156,7 +3183,7 @@ input[switch=default]:checked + label {
 }
 
 input[switch=primary]:checked + label {
-    background-color: #0f9cf3;
+    background-color: #252b3b;
 }
 
 input[switch=success]:checked + label {
@@ -3280,7 +3307,7 @@ table.dataTable thead .sorting_desc_disabled:before {
     right: auto;
     left: 0.5rem;
     content: "\f0360";
-    font-family: "Material Design Icons";
+    font-family: Poppins, Helvetica, "sans-serif";;
     font-size: 1rem;
     top: 9px;
 }
@@ -3293,7 +3320,7 @@ table.dataTable thead .sorting_desc_disabled:after {
     right: auto;
     left: 0.5em;
     content: "\f035d";
-    font-family: "Material Design Icons";
+    font-family: Poppins, Helvetica, "sans-serif";
     top: 15px;
     font-size: 1rem;
 }
@@ -3686,7 +3713,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 
 .table-rep-plugin .checkbox-row input[type=checkbox]:checked + label::after {
     content: "\f00c";
-    font-family: "Font Awesome 5 Free";
+    font-family: Poppins, Helvetica, "sans-serif";
     font-weight: 900;
 }
 
@@ -4072,7 +4099,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 
 .message-list .checkbox-wrapper-mail label:before {
     content: "\f012c";
-    font-family: "Material Design Icons";
+    font-family: Poppins, Helvetica, "sans-serif";
     top: 0;
     height: 20px;
     color: #060e1d;

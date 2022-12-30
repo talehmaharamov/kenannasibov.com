@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\Update\InformationRequest;
 use App\Http\Requests\Update\InformationPasswordRequest as PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InformationController extends Controller
 {
@@ -22,11 +24,13 @@ class InformationController extends Controller
         try {
             User::find($id)->update([
                 'name' => $request->name,
+                'email' => $request->email,
             ]);
-            return redirect()->back()->with('successMessage', __('messages.success'));
-
+            alert()->success(__('messages.success'));
+            return redirect()->back();
         } catch (\Exception $e) {
-            return redirect()->back()->with('successPassword', __('messages.error'));
+            alert()->error(__('messages.error'));
+            return redirect()->back();
         }
     }
 
@@ -36,10 +40,11 @@ class InformationController extends Controller
             User::find($request->id)->update([
                 'password' => Hash::make($request->password),
             ]);
-            return redirect()->back()->with('successPassword', __('messages.success'));
-        } catch (\Exception $e) {
-            return redirect()->back()->with('successPassword', __('messages.error'));
+            alert()->success(__('messages.success'));
+            return redirect()->back();
+        } catch (Exception $e) {
+            alert()->error(__('messages.error') . $e);
+            return redirect()->route('backend.my-informations.index');
         }
-
     }
 }

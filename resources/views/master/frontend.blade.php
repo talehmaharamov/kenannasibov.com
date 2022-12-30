@@ -7,10 +7,10 @@
 <body>
 <div class="body">
     @include('frontend.includes.navbar')
-    @yield('content')
+    @yield('front')
     @include('frontend.includes.footer')
     @include('frontend.includes.scripts')
 </div>
-
+@yield('scripts')
 </body>
 </html>

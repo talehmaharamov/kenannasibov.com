@@ -8522,7 +8522,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	font-size: 2.6em;
 	line-height: 44px;
-	margin: 0 0 32px 0;
+	margin: 0 0 10px 0;
 }
 
 h2 {
@@ -8537,7 +8537,6 @@ h3 {
 	font-weight: 400;
 	line-height: 24px;
 	margin-bottom: 33px;
-	text-transform: uppercase;
 }
 
 h4 {
@@ -9660,6 +9659,7 @@ html.lightbox-opened.sticky-header-active #header .header-body {
 }
 
 .list.list-icons li {
+    color: black;
 	position: relative;
 	padding-left: 25px;
 }
@@ -14320,7 +14320,7 @@ html.ie11 .scroll-to-top {
 
 /* Section Featured */
 section.section {
-	background: #f7f7f7;
+	/*background: #f7f7f7;*/
 	border-top: 5px solid #f1f1f1;
 	/*margin: 30px 0;*/
 	/*padding: 50px 0;*/
@@ -18457,7 +18457,8 @@ small, .small {
 
 /* Paragraphs */
 p {
-	color: #777;
+    color: black;
+    font-size: 17px;
 	line-height: 26px;
 	margin: 0 0 20px;
 }

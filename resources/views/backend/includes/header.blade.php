@@ -3,10 +3,10 @@
         <div class="d-flex">
             <div class="navbar-brand-box">
                 <a href="" class="logo logo-light">
-                     <span class="logo-sm">
+                     <span class="logo-sm justify-content-center">
                          <img src="{{asset('frontend/images/logos/dirnislogo.png')}}" alt="logo-sm-light" height="38">
                      </span>
-                    <span class="logo-lg">
+                    <span class="logo-lg justify-content-center">
                         <img src="{{asset('frontend/images/logos/logod.png')}}" alt="logo-light" height="50">
                      </span>
                 </a>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="d-flex">
-            <div class="dropdown d-none d-sm-inline-block">
+            <div class="dropdown d-sm-inline-block">
                 <button type="button" class="btn header-item waves-effect"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if(app()->getLocale() == 'en')
@@ -44,25 +44,28 @@
                     </a>
                 </div>
             </div>
+            <div class="dropdown d-none d-lg-inline-block ms-1">
+                <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                    <i class="ri-fullscreen-line"></i>
+                </button>
+            </div>
 
             <div class="dropdown d-inline-block user-dropdown">
-
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <img class="rounded-circle header-profile-user"
-                         src="{{ asset('backend/images/users/gede.png')}}"
+                         src="{{ Avatar::create(\Illuminate\Support\Facades\Auth::user()->name)->toBase64(); }}"
                          alt="Header Avatar">
                     <span class="d-xl-inline-block ms-1 ">{{ auth()->user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-xl-inline-block"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-end">
+                <div class="dropdown-menu">
                         <a href="{{ route('logout') }}" type="submit" class="dropdown-item text-danger">
                             <i class="ri-shut-down-line align-middle me-1 text-danger"></i>
                             @lang('backend.logout')
                         </a>
                 </div>
             </div>
-
         </div>
     </div>
 </header>

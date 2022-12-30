@@ -200,7 +200,7 @@ window.theme.fn = {
 				// Exec Callback Function
 				callback.call($(this));
 
-				// Add data name 
+				// Add data name
 				$(this).data(dataName, true);
 
 				// Unbind event
@@ -221,7 +221,7 @@ window.theme.fn = {
 				// Exec Callback Function
 				callback();
 
-				// Add data name 
+				// Add data name
 				$(this).data(dataName, true);
 
 				// Unbind event
@@ -369,7 +369,7 @@ window.theme.fn = {
 			// Change Active Class
 			$(this).parents('.nav-tabs').find('.active').removeClass('active');
 			$(this).addClass('active').parent().addClass('active');
-		});	
+		});
 
 		if( window.location.hash ) {
 			$(window).on('load', function(){
@@ -581,7 +581,7 @@ window.theme.fn = {
 	* Page Transition
 	*/
 	if( $('body[data-plugin-page-transition]').length ) {
-		
+
 		var link_click = false;
 
 		$(document).on('click', 'a', function(e){
@@ -603,7 +603,7 @@ window.theme.fn = {
 				if( $('html').hasClass('safari') ) {
 					window.location.reload();
 				}
-				
+
 		        $('body').removeClass('page-transition-active');
 		    }
 		});
@@ -638,7 +638,7 @@ window.theme.fn = {
 	if( $('.thumb-info-floating-element-wrapper').length ) {
 
 		$('.thumb-info-floating-element-wrapper').on('mouseenter', function(e){
-			
+
 			if(!$(this).data('offset')) {
 				$(this).data('offset', 0);
 			}
@@ -892,7 +892,7 @@ window.theme.fn = {
 		  	}
 
 		  	document.body.appendChild(script1);
-		  	document.body.appendChild(script2);	
+		  	document.body.appendChild(script2);
 
 		});
 
@@ -1943,7 +1943,7 @@ Licensed under the terms of the MIT license.
 			scrollY = $window.scrollTop();
 
 			var elmts = [];
-			for (var i=0, len=elements.length; i<len; i++) {          
+			for (var i=0, len=elements.length; i<len; i++) {
 				var $this = $(elements[i]),
 					data  = $this.data("pin");
 
@@ -1951,16 +1951,16 @@ Licensed under the terms of the MIT license.
 				  continue;
 				}
 
-				elmts.push($this); 
-				  
+				elmts.push($this);
+
 				var from = data.from - data.pad.bottom,
 					to = data.to - data.pad.top;
-			  
+
 				if (from + $this.outerHeight() > data.end) {
 					$this.css('position', '');
 					continue;
 				}
-			  
+
 				if (from < scrollY && to > scrollY) {
 					!($this.css("position") == "fixed") && $this.css({
 						left: $this.offset().left,
@@ -1984,7 +1984,7 @@ Licensed under the terms of the MIT license.
 		var update = function () { recalculateLimits(); onScroll(); };
 
 		this.each(function () {
-			var $this = $(this), 
+			var $this = $(this),
 				data  = $(this).data('pin') || {};
 
 			if (data && data.update) { return; }
@@ -2007,24 +2007,24 @@ Licensed under the terms of the MIT license.
 
 ( function( $ ) {
 	"use strict";
-	
+
 	// Define default settings
 	var defaults = {
 		action: function() {},
 		runOnLoad: false,
 		duration: 500
 	};
-	
+
 	// Define global variables
 	var settings = defaults,
 		running = false,
 		start;
-	
+
 	var methods = {};
-	
+
 	// Initial plugin configuration
 	methods.init = function() {
-		
+
 		// Allocate passed arguments to settings based on type
 		for( var i = 0; i <= arguments.length; i++ ) {
 			var arg = arguments[i];
@@ -2040,26 +2040,26 @@ Licensed under the terms of the MIT license.
 					break;
 			}
 		}
-	
+
 		// Process each matching jQuery object
 		return this.each(function() {
-		
+
 			if( settings.runOnLoad ) { settings.action(); }
-			
+
 			$(this).resize( function() {
-				
+
 				methods.timedAction.call( this );
-				
+
 			} );
-		
+
 		} );
 	};
-	
+
 	methods.timedAction = function( code, millisec ) {
-		
+
 		var doAction = function() {
 			var remaining = settings.duration;
-			
+
 			if( running ) {
 				var elapse = new Date() - start;
 				remaining = settings.duration - elapse;
@@ -2069,40 +2069,40 @@ Licensed under the terms of the MIT license.
 					running = false;
 					// Perform user defined function
 					settings.action();
-				
+
 					return;
 				}
 			}
 			wait( remaining );
 		};
-		
+
 		var wait = function( time ) {
 			running = setTimeout( doAction, time );
 		};
-		
+
 		// Define new action starting time
 		start = new Date();
-		
+
 		// Define runtime settings if function is run directly
 		if( typeof millisec === 'number' ) { settings.duration = millisec; }
 		if( typeof code === 'function' ) { settings.action = code; }
-		
+
 		// Only run timed loop if not already running
 		if( !running ) { doAction(); }
-		
+
 	};
 
-	
+
 	$.fn.afterResize = function( method ) {
-		
+
 		if( methods[method] ) {
 			return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		} else {
 			return methods.init.apply( this, arguments );
 		}
-		
+
 	};
-	
+
 })(jQuery);
 
 
@@ -2122,7 +2122,7 @@ jQuery(document).ready(function($) {
 		typeLettersDelay = 150,
 		selectionDuration = 500,
 		typeAnimationDelay = selectionDuration + 800,
-		//clip effect 
+		//clip effect
 		revealDuration = 600,
 		revealAnimationDelay = 1500;
 
@@ -2137,7 +2137,7 @@ jQuery(document).ready(function($) {
 		var duration = animationDelay;
 
 		theme.fn.intObs($selector, function(){
-			
+
 			// Single Letters - Insert <i> element for each letter of a changing word
 			if( $(this).hasClass('letters') ) {
 				$(this).find('b').each(function() {
@@ -2150,7 +2150,7 @@ jQuery(document).ready(function($) {
 					}
 					var newLetters = letters.join('');
 					word.html(newLetters).css('opacity', 1);
-				});				
+				});
 			}
 
 			// Animate the Headline
@@ -2340,9 +2340,9 @@ Issues: http://github.com/ariona/hover3d/issues
 */
 
 (function($){
-	
+
 	$.fn.hover3d = function(options){
-		
+
 		var settings = $.extend({
 			selector      : null,
 			perspective   : 1000,
@@ -2353,9 +2353,9 @@ Issues: http://github.com/ariona/hover3d/issues
 			hoverOutClass : "hover-out",
 			hoverClass    : "hover-3d"
 		}, options);
-		
+
 		return this.each(function(){
-			
+
 			var $this = $(this),
 				$card = $this.find(settings.selector);
 				currentX = 0;
@@ -2373,7 +2373,7 @@ Issues: http://github.com/ariona/hover3d/issues
 				perspective: settings.perspective+"px",
 				transformStyle: "preserve-3d"
 			});
-			
+
 			$card.css({
 				perspective: settings.perspective+"px",
 				transformStyle: "preserve-3d",
@@ -2388,7 +2388,7 @@ Issues: http://github.com/ariona/hover3d/issues
 				transform : 'translateZ(1px)',
 				"z-index" : 9
 			});
-			
+
 			// Mouse Enter function, this will add hover-in
 			// Class so when mouse over it will add transition
 			// based on hover-in class
@@ -2399,10 +2399,10 @@ Issues: http://github.com/ariona/hover3d/issues
 					$card.removeClass(settings.hoverInClass);
 				}, 1000);
 			}
-			
+
 			// Mouse movement Parallax effect
 			function move(event){
-				
+
 				var w      = $card.innerWidth(),
 					h      = $card.innerHeight(),
 					currentX = Math.round(event.pageX - $card.offset().left),
@@ -2414,11 +2414,11 @@ Issues: http://github.com/ariona/hover3d/issues
 					theta  = Math.atan2(dy, dx),
 					angle  = theta * 180 / Math.PI - 90;
 
-					
+
 				if (angle < 0) {
 					angle  = angle + 360;
 				}
-				
+
 
 				$card.css({
 					perspective    : settings.perspective+"px",
@@ -2428,7 +2428,7 @@ Issues: http://github.com/ariona/hover3d/issues
 
 				$shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + event.offsetY / h * .5 + ') 0%,rgba(255,255,255,0) 80%)');
 			}
-			
+
 			// Mouse leave function, will set the transform
 			// property to 0, and add transition class
 			// for exit animation
@@ -2444,26 +2444,26 @@ Issues: http://github.com/ariona/hover3d/issues
 					currentX = currentY = 0;
 				}, 1000 );
 			}
-			
+
 			// Mouseenter event binding
 			$this.on( "mouseenter", function(){
 				return enter();
 			});
-			
+
 			// Mousemove event binding
 			$this.on( "mousemove", function(event){
 				return move(event);
 			});
-			
+
 			// Mouseleave event binding
 			$this.on( "mouseleave", function(){
 				return leave();
 			});
-			
+
 		});
-		
+
 	};
-	
+
 }(jQuery));
 
 
@@ -2473,16 +2473,16 @@ Issues: http://github.com/ariona/hover3d/issues
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
 ;( function( $, window, undefined ) {
-	
+
 	'use strict';
 
 	$.HoverDir = function( options, element ) {
-		
+
 		this.$el = $( element );
 		this._init( options );
 
@@ -2500,7 +2500,7 @@ Issues: http://github.com/ariona/hover3d/issues
 	$.HoverDir.prototype = {
 
 		_init : function( options ) {
-			
+
 			// options
 			this.options = $.extend( true, {}, $.HoverDir.defaults, options );
 			// transition properties
@@ -2514,23 +2514,23 @@ Issues: http://github.com/ariona/hover3d/issues
 		_loadEvents : function() {
 
 			var self = this;
-			
+
 			this.$el.on( 'mouseenter.hoverdir, mouseleave.hoverdir', function( event ) {
-				
+
 				var $el = $( this ),
 					$hoverElem = $el.find( self.options.hoverElem ),
 					direction = self._getDir( $el, { x : event.pageX, y : event.pageY } ),
 					styleCSS = self._getStyle( direction );
-				
+
 				if( event.type === 'mouseenter' ) {
-					
+
 					$hoverElem.hide().css( styleCSS.from );
 					clearTimeout( self.tmhover );
 
 					self.tmhover = setTimeout( function() {
-						
+
 						$hoverElem.show( 0, function() {
-							
+
 							var $el = $( this );
 							if( self.support ) {
 								$el.css( 'transition', self.transitionProp );
@@ -2538,27 +2538,27 @@ Issues: http://github.com/ariona/hover3d/issues
 							self._applyAnimation( $el, styleCSS.to, self.options.speed );
 
 						} );
-						
-					
+
+
 					}, self.options.hoverDelay );
-					
+
 				}
 				else {
-				
+
 					if( self.support ) {
 						$hoverElem.css( 'transition', self.transitionProp );
 					}
 					clearTimeout( self.tmhover );
 					self._applyAnimation( $hoverElem, styleCSS.from, self.options.speed );
-					
+
 				}
-					
+
 			} );
 
 		},
 		// credits : http://stackoverflow.com/a/3647634
 		_getDir : function( $el, coordinates ) {
-			
+
 			// the width and height of the current div
 			var w = $el.width(),
 				h = $el.height(),
@@ -2567,19 +2567,19 @@ Issues: http://github.com/ariona/hover3d/issues
 				// gets the x value relative to the center of the DIV and "normalize" it
 				x = ( coordinates.x - $el.offset().left - ( w/2 )) * ( w > h ? ( h/w ) : 1 ),
 				y = ( coordinates.y - $el.offset().top  - ( h/2 )) * ( h > w ? ( w/h ) : 1 ),
-			
+
 				// the angle and the direction from where the mouse came in/went out clockwise (TRBL=0123);
 				// first calculate the angle of the point,
 				// add 180 deg to get rid of the negative values
 				// divide by 90 to get the quadrant
 				// add 3 and do a modulo by 4  to shift the quadrants to a proper clockwise TRBL (top/right/bottom/left) **/
 				direction = Math.round( ( ( ( Math.atan2(y, x) * (180 / Math.PI) ) + 180 ) / 90 ) + 3 ) % 4;
-			
+
 			return direction;
-			
+
 		},
 		_getStyle : function( direction ) {
-			
+
 			var fromStyle, toStyle,
 				slideFromTop = { left : '0px', top : '-100%' },
 				slideFromBottom = { left : '0px', top : '100%' },
@@ -2587,7 +2587,7 @@ Issues: http://github.com/ariona/hover3d/issues
 				slideFromRight = { left : '100%', top : '0px' },
 				slideTop = { top : '0px' },
 				slideLeft = { left : '0px' };
-			
+
 			switch( direction ) {
 				case 0:
 					// from top
@@ -2610,9 +2610,9 @@ Issues: http://github.com/ariona/hover3d/issues
 					toStyle = slideLeft;
 					break;
 			};
-			
+
 			return { from : fromStyle, to : toStyle };
-					
+
 		},
 		// apply a transition or fallback to jquery animate based on Modernizr.csstransitions support
 		_applyAnimation : function( el, styleCSS, speed ) {
@@ -2623,77 +2623,77 @@ Issues: http://github.com/ariona/hover3d/issues
 		},
 
 	};
-	
+
 	var logError = function( message ) {
 
 		if ( window.console ) {
 
 			window.console.error( message );
-		
+
 		}
 
 	};
-	
+
 	$.fn.hoverdir = function( options ) {
 
 		var instance = $.data( this, 'hoverdir' );
-		
+
 		if ( typeof options === 'string' ) {
-			
+
 			var args = Array.prototype.slice.call( arguments, 1 );
-			
+
 			this.each(function() {
-			
+
 				if ( !instance ) {
 
 					logError( "cannot call methods on hoverdir prior to initialization; " +
 					"attempted to call method '" + options + "'" );
 					return;
-				
+
 				}
-				
+
 				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
 
 					logError( "no such method '" + options + "' for hoverdir instance" );
 					return;
-				
+
 				}
-				
+
 				instance[ options ].apply( instance, args );
-			
+
 			});
-		
-		} 
+
+		}
 		else {
-		
+
 			this.each(function() {
-				
+
 				if ( instance ) {
 
 					instance._init();
-				
+
 				}
 				else {
 
 					instance = $.data( this, 'hoverdir', new $.HoverDir( options, this ) );
-				
+
 				}
 
 			});
-		
+
 		}
-		
+
 		return instance;
-		
+
 	};
-	
+
 } )( jQuery, window );
 
 
 /*!
  * GSAP 3.9.1
  * https://greensock.com
- * 
+ *
  * @license Copyright 2021, GreenSock. All rights reserved.
  * Subject to the terms at https://greensock.com/standard-license or for Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
@@ -2740,7 +2740,7 @@ if($('[data-title-border]').length) {
 			self.events();
 		},
 		build: function() {
-			var self = this, 
+			var self = this,
 				footer_height = self.$wrapper.outerHeight(true),
 				window_height = ( $(window).height() - $('.header-body').height() );
 
@@ -2783,7 +2783,7 @@ if( $('[data-reinit-plugin]').length ) {
 		$( pluginElement ).data( pluginInstance ).destroy();
 
 		setTimeout(function(){
-			theme.fn.execPluginFunction(pluginFunction, $( pluginElement ), pluginOptions);	
+			theme.fn.execPluginFunction(pluginFunction, $( pluginElement ), pluginOptions);
 		}, 1000);
 
 	});
@@ -2808,7 +2808,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			$btn.parent().append( $temp );
 
 			$temp.val( $this.text() );
-				
+
 			$temp[0].select();
 			$temp[0].setSelectionRange(0, 99999);
 
@@ -2885,7 +2885,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			// - Less process and memory
 			if( self.options.flagClassOnly ) {
 				var delay = self.options.wrapper.attr('data-appear-animation-delay') ? self.options.wrapper.attr('data-appear-animation-delay') : self.options.delay;
-				
+
 				self.options.wrapper.css({
 					'animation-delay': delay + 'ms',
 					'transition-delay': delay + 'ms'
@@ -2914,7 +2914,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				elTopDistance = $el.offset().top,
 				windowTopDistance = $(window).scrollTop();
 
-			// If has appear animation elements inside a SVG. 
+			// If has appear animation elements inside a SVG.
 			// Intersection Observer API do not check elements inside SVG's, so we need initialize trough top parent SVG
 			if( $el.data('appear-animation-svg') ) {
 				$el.find('[data-appear-animation]').each(function(){
@@ -2925,7 +2925,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					if (pluginOptions)
 						opts = pluginOptions;
 
-					$this.themePluginAnimate(opts);	
+					$this.themePluginAnimate(opts);
 				});
 
 				return this;
@@ -2961,7 +2961,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				$el.css('animation-delay', delay + 'ms');
 				$el.addClass($el.attr('data-appear-animation') + ' appear-animation-visible');
-				
+
 				$el.trigger('animation:show');
 
 			} else {
@@ -3073,7 +3073,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			}
 
 			// Add class to show
-			self.$el.addClass('initialized');			
+			self.$el.addClass('initialized');
 
 			// Set Min Height to avoid flicking issues
 			self.setMinHeight();
@@ -3090,7 +3090,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					var timeout = function(){
 						var st = setTimeout(function(){
 							var letter = letters[index];
-							
+
 							self.$el.find('.letters-wrapper').append( '<span class="letter '+ ( self.options.letterClass ? self.options.letterClass + ' ' : '' ) +'">' + letter + '</span>' );
 
 							index++;
@@ -3108,9 +3108,9 @@ if( $('[data-copy-to-clipboard]').length ) {
 				setTimeout(function(){
 					for( var i = 0; i < letters.length; i++ ) {
 						var letter = letters[i];
-						
+
 						self.$el.append( '<span class="letter '+ ( self.options.letterClass ? self.options.letterClass + ' ' : '' ) + self.options.animationName +' animated" style="animation-delay: '+ ( i * self.options.animationSpeed ) +'ms;">' + letter + '</span>' );
-	
+
 					}
 				}, self.options.startDelay);
 			}
@@ -3193,7 +3193,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 	};
 
 	PluginBeforeAfter.defaults = {
-		
+
 	};
 
 	PluginBeforeAfter.prototype = {
@@ -3467,7 +3467,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			if( self.clickFlag ) {
 				self.clickFlag = false;
 				setTimeout(function(){
-					self.clickFlag = true; 
+					self.clickFlag = true;
 				}, 1000);
 			}
 
@@ -3505,7 +3505,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 							if( self.options.disableAutoPlayOnClick ) {
 								window.clearInterval(self.autoPlayInterval);
 							}
-							
+
 							self.changeSlide( self.$el.find('.owl-item').eq( parseInt(toIndex) - 1 ) );
 						});
 
@@ -3567,7 +3567,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				    self.$el.find('.owl-item.cloned.active [data-plugin-video-background]').trigger('video.background.initialize');
 
 				}, 500);
-			    
+
 			});
 		}
 	};
@@ -3800,7 +3800,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				$el.on('change.owl.carousel', function(event) {
 					if (event.namespace && event.property.name === 'position') {
 					    var target = event.relatedTarget.relative(event.property.value, true);
-					    $( $el.data('sync') ).owlCarousel('to', target, 300, true);				        
+					    $( $el.data('sync') ).owlCarousel('to', target, 300, true);
 				  	}
 				});
 			}
@@ -3815,7 +3815,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				$el.on('change.owl.carousel', function(event) {
 				  	$el.find('.owl-item').removeClass('current');
-					
+
 					setTimeout(function(){
 					  	var itemsActive    = $el.find('.owl-item.active'),
 					  		indexCenter    = Math.floor( ($el.find('.owl-item.active').length - 1) / 2 ),
@@ -3870,7 +3870,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					    $el.find('.owl-item.cloned.active [data-plugin-video-background]').trigger('video.background.initialize');
 
 					}, 10);
-				    
+
 				});
 			}
 
@@ -3885,7 +3885,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 						if (pluginOptions)
 							opts = pluginOptions;
 
-						$this.themePluginIcon(opts);	
+						$this.themePluginIcon(opts);
 					});
 				});
 			}
@@ -4329,7 +4329,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			$.extend(self.options, {
 				onComplete: function() {
-					
+
 					if ($el.data('append')) {
 						if( self.options.appendWrapper ) {
 							var appendWrapper = $( self.options.appendWrapper );
@@ -4465,7 +4465,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					case 'small':
 						self.$el.addClass( 'cursor-effect-size-small' );
 						break;
-					
+
 					case 'big':
 						self.$el.addClass( 'cursor-effect-size-big' );
 						break;
@@ -4551,7 +4551,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			});
 
 			$('[data-cursor-effect-hover]').on('mouseleave', function(){
-				
+
 				// Identify Event With Hover Class
 				$cursorOuter.removeClass('cursor-outer-hover');
 				$cursorInner.removeClass('cursor-inner-hover');
@@ -4593,7 +4593,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 		destroy: function() {
 			var self = this;
 
-			self.$el.removeClass('hide-mouse-cursor cursor-effect-size-small cursor-effect-size-big cursor-effect-style-square');		
+			self.$el.removeClass('hide-mouse-cursor cursor-effect-size-small cursor-effect-size-big cursor-effect-style-square');
 
 			cancelAnimationFrame( self.loop );
 			cancelAnimationFrame( self.loopInside );
@@ -4685,7 +4685,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				$window = $(window),
 				minus;
 
-			// If has floating elements inside a SVG. 
+			// If has floating elements inside a SVG.
 			// Intersection Observer API do not check elements inside SVG's, so we need initialize trough top parent SVG
 			if( $el.data('plugin-float-element-svg') ) {
 				$el.find('[data-plugin-float-element]').each(function(){
@@ -4731,11 +4731,11 @@ if( $('[data-copy-to-clipboard]').length ) {
 				}
 
 				// First Load
-				self.movement(minus);	
+				self.movement(minus);
 
 				// Scroll
 				$window.on('scroll', function(){
-					self.movement(minus);				   
+					self.movement(minus);
 				});
 
 			}
@@ -4769,7 +4769,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			   		});
 
 		   		}
-		   		
+
 		   	}
 
 		}
@@ -5055,7 +5055,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				.setData()
 				.setOptions(opts)
 				.build();
-				
+
 			return this;
 		},
 
@@ -5082,7 +5082,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					url: self.options.ajaxURL,
 					cache: false,
 					complete: function(data) {
-					
+
 						setTimeout(function() {
 
 							self.options.wrapper.html(data.responseText).addClass('show');
@@ -5198,7 +5198,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			self.$el.mousemove(function(e) {
 
 				const pos = this.getBoundingClientRect();
-				const mx = e.clientX - pos.left - pos.width/2; 
+				const mx = e.clientX - pos.left - pos.width/2;
 				const my = e.clientY - pos.top - pos.height/2;
 
 				this.style.transform = 'translate('+ mx * self.options.magneticMx +'px, '+ my * self.options.magneticMx +'px)';
@@ -5342,7 +5342,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			// SVG Content
 			var SVGContent = $.get({
-				url: $el.attr('src'), 
+				url: $el.attr('src'),
 				success: function(data, status, xhr){
 					var iconWrapper = self.options.fadeIn ? $('<div class="animated-icon animated fadeIn">'+ xhr.responseText +'</div>') : $('<div class="animated-icon animated">'+ xhr.responseText +'</div>'),
 						uniqid = 'icon_' + Math.floor(Math.random() * 26) + Date.now();
@@ -5356,12 +5356,12 @@ if( $('[data-copy-to-clipboard]').length ) {
 					if( $el.attr('width') ) {
 						iconWrapper.find('svg')
 							.attr('width', $el.attr('width'))
-							.attr('height', $el.attr('width'));						
+							.attr('height', $el.attr('width'));
 					}
 
 					if( $el.attr('height') ) {
 						iconWrapper.find('svg')
-							.attr('height', $el.attr('height'));	
+							.attr('height', $el.attr('height'));
 					}
 
 					if( self.options.svgViewBox ) {
@@ -5393,7 +5393,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 						// SVG Fill Based
 						if( self.options.animated && !self.options.strokeBased || !self.options.animated && color && !self.options.strokeBased ) {
 							animateStyle = 'stroke-width: 0.1px; fill-opacity: 0; transition: ease fill-opacity 300ms;';
-							
+
 							// Set Style on SVG inside object
 							styleElement.textContent = '#' + uniqid + ' path, #' + uniqid + ' line, #' + uniqid + ' rect, #' + uniqid + ' circle, #' + uniqid + ' polyline { fill: '+ color +'; stroke: '+ color +'; '+ animateStyle + (self.options.svgStyle ? self.options.svgStyle : "") + ' } .finished path { fill-opacity: 1; }';
 							obj.el.appendChild(styleElement);
@@ -5420,7 +5420,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 					// Animated
 					if( self.options.animated && $(window).width() > 767 ) {
-						
+
 						// First Load
 						if( $el.visible( true ) ) {
 							self.startIconAnimation( icon, $el );
@@ -5436,17 +5436,17 @@ if( $('[data-copy-to-clipboard]').length ) {
 						});
 
 					} else {
-						
+
 						$el.css({ opacity: 1 });
 						icon.finish();
-						
+
 						$(window).on('theme.plugin.icon.svg.ready', function(){
 							setTimeout(function(){
 								icon.el.setAttribute('class', 'finished');
 								icon.finish();
 							}, 300);
 						});
-						
+
 					}
 
 					$(window).trigger('icon.rendered');
@@ -5708,7 +5708,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			if ( !this.$overlay.get(0) ) {
 				this.matchProperties();
 			}
-			
+
 			if( noInheritOptions ) {
 				this.options     = $.extend( true, {}, this.options, options );
 			} else {
@@ -5775,7 +5775,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 							this.$overlay = $( loadingOverlayDefaultTemplate ).clone();
 							break;
 					}
-					
+
 					if ( this.options.css ) {
 						this.$overlay.css( this.options.css );
 						this.$overlay.find( '.loader' ).addClass( this.loaderClass );
@@ -5797,7 +5797,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				if( _self.options.isDynamicHideShow ) {
 					setTimeout(function(){
 						_self.progress = 'complete';
-						
+
 						$('.page-loader-progress').text(100);
 
 						if( ['percentageProgress2'].includes(_self.options.effect) ) {
@@ -5872,7 +5872,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 		            }, _self.options.progressMinTimeout);
 				});
 			}
-		        
+
 			return this;
 		},
 
@@ -5893,7 +5893,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			setTimeout(function() {
 				_self.$wrapper.removeClass( 'loading-overlay-showing' );
-				
+
 				if ( this.position != 'relative' || this.position != 'absolute' || this.position != 'fixed' ) {
 					_self.$wrapper.css({ position: '' });
 				}
@@ -5909,14 +5909,14 @@ if( $('[data-copy-to-clipboard]').length ) {
 				if(_self.pageStatus == "complete"){
 		            $('.page-loader-progress').text(100);
 		            setTimeout(function(){
-		                $('.page-loader-progress').addClass('d-none');    
+		                $('.page-loader-progress').addClass('d-none');
 		            }, 700);
 		        }
-		        else{            
+		        else{
 		            if(_self.progress == null){
 		                _self.progress = 1;
 		            }
-		           
+
 		            _self.progress = _self.progress + 1;
 		            if(_self.progress >= 0 && _self.progress <= 30){
 		                _self.animationInterval += 1;
@@ -5951,7 +5951,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 		            		width: _self.progress + '%'
 		            	});
 		            }
-		              
+
 					self.loopInside = setTimeout(render, _self.animationInterval);
 		        }
 
@@ -6160,7 +6160,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			});
 
 			self.options.wrapper.waitForImages(function() {
-				self.options.wrapper.isotope(self.options);	
+				self.options.wrapper.isotope(self.options);
 			});
 
 			// IE10/11 fix
@@ -6431,7 +6431,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 						     	currentElementOffset = (elementOffset - scrollTop);
 
 						   	var scrollPercent = Math.abs( +( currentElementOffset - $window.height() ) / (self.options.startOffset ? self.options.startOffset : 7) );
-						 	
+
 						 	// Increment progress value according scroll position
 						 	if( scrollPercent <= self.options.cssValueEnd && progress <= self.options.cssValueEnd ) {
 						 		progress = self.options.cssValueStart + scrollPercent;
@@ -6659,7 +6659,7 @@ if( $('[data-copy-to-clipboard]').length ) {
         delay: null,
         animateIn: 'fadeIn',
 		animateOut: 'fadeOut',
-		stopAtImageIndex: false, // The value shoudl be the index value of array with images as string. Eg: '2' 
+		stopAtImageIndex: false, // The value shoudl be the index value of array with images as string. Eg: '2'
 		stopAfterFewSeconds: false, // The value should be in mili-seconds. Eg: 10000 = 10 seconds
 		stopAfterXTimes: false,
 		accY: 0
@@ -6700,7 +6700,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 		build: function() {
             var self = this;
-			
+
 			// Control the screens size we want to have the plugin working
 			if( $(window).width() < self.options.minWindowWidth  ) {
 				return false;
@@ -6708,7 +6708,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			// Check if is single image or wrapper with images inside
             if( self.$el.is('img') ) {
-				
+
 				// Check it's inside a lightbox
 				self.isInsideLightbox = self.$el.closest('.lightbox').length ? true : false;
 
@@ -6716,7 +6716,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				if( self.isInsideLightbox && self.options.lightboxImagesListURL ) {
 					self.options.lightboxImagesListURL.push( self.$el.closest('.lightbox').attr('href') );
 				}
-	
+
 				// Push the current image src to the array
 				self.options.imagesListURL.push( self.$el.attr('src') );
 
@@ -6734,19 +6734,19 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				// Start the recursive timeout
 				setTimeout(function(){
-					self.recursiveTimeout( 
-						self.perImageTag, 
+					self.recursiveTimeout(
+						self.perImageTag,
 						self.options.delay == null ? 3000 : self.options.delay
 					);
 				}, self.options.delay == null ? 300 : self.options.delay / 3);
 
 			} else {
-				
+
 				// Start the recursive timeout
-				setTimeout( self.recursiveTimeout( 
-					self.perWrapper, 
-					self.options.delay ? self.options.delay : getPerWrapperHighDelay(), 
-					false 
+				setTimeout( self.recursiveTimeout(
+					self.perWrapper,
+					self.options.delay ? self.options.delay : getPerWrapperHighDelay(),
+					false
 				), 300);
 
 			}
@@ -6757,7 +6757,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					clearTimeout(self.st);
 				}, self.options.stopAfterFewSeconds);
 			}
-			
+
 			return this;
 
 		},
@@ -6787,7 +6787,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			// Remove the entrance animation class and add the out animation class
 			self.$el.removeClass( self.options.animateIn ).addClass( self.options.animateOut );
-			
+
 			// Change the image src and add the class for entrance animation
 			setTimeout( function(){
 				self.$el.attr('src', self.options.imagesListURL[index]).removeClass( self.options.animateOut ).addClass(self.options.animateIn);
@@ -6796,10 +6796,10 @@ if( $('[data-copy-to-clipboard]').length ) {
 					self.$el.closest('.lightbox').attr('href', self.options.lightboxImagesListURL[index]);
 				}
 			}, 1000);
-			
+
 			// Save the last index for future checks
 			self.lastIndex = index;
-			
+
 			// Increment the times var
 			self.times++;
 
@@ -6817,7 +6817,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			$wrapper.find('img').each(function(){
 				var $image = $(this);
-				
+
 				if( $image.data('rimage-delay') && parseInt( $image.data('rimage-delay') ) > delay ) {
 					delay = parseInt( $image.data('rimage-delay') );
 				}
@@ -6836,7 +6836,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			// Find all images inside the element wrapper and push their sources to image list array
 			$wrapper.find('img').each(function(){
 				var $image = $(this);
-				self.options.imagesListURL.push( $image.attr('src') ); 
+				self.options.imagesListURL.push( $image.attr('src') );
 			});
 
 			// Shuffle the images list array (random effect)
@@ -6860,7 +6860,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				}, delay);
 
 			});
-			
+
 			// Increment the times variable
 			self.times++;
 
@@ -6905,7 +6905,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			});
 
 		},
-		
+
 		shuffle: function( array ) {
 			for (var i = array.length - 1; i > 0; i--) {
 				var j = Math.floor(Math.random() * (i + 1));
@@ -7008,7 +7008,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			if( $('html').hasClass('safari') ) {
 				backgroundCssValue = '-webkit-linear-gradient(top, rgba(2, 0, 36, 0) 0%, '+ self.options.overlayColor +' 100%)'
 			}
-			
+
 			self.options.wrapper.find('.readmore-overlay').css({
 				background: backgroundCssValue,
 				position: 'absolute',
@@ -7026,7 +7026,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				left: 0,
 				width: '100%',
 				'z-index': 2
-			});	
+			});
 
 			// Button Label
 			self.options.wrapper.find('.readmore-button-wrapper > a').html( self.options.buttonOpenLabel );
@@ -7264,8 +7264,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 	    	enable: false
 	    },
 	    particles: {
-			startSlide: "first", 
-			endSlide: "last", 
+			startSlide: "first",
+			endSlide: "last",
 			zIndex: "1",
 			particles: {
 				number: {value: 80}, color: {value: "#ffffff"},
@@ -7347,7 +7347,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 		addOnDistortion: {
 			enable: false
 		}
-		
+
 	};
 
 	PluginRevolutionSlider.prototype = {
@@ -7404,7 +7404,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			if(this.options.sliderLayout == 'fullscreen') {
 				this.options.wrapper.closest('.slider-container').addClass('fullscreen-slider');
 			}
-			
+
 			// Initialize Revolution Slider
 			this.options.wrapper.revolution(this.options);
 
@@ -7529,8 +7529,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			if( this.options.debugMode ) {
 				this.debugMode();
-			} 
-			
+			}
+
 			this.build();
 
 			return this;
@@ -7562,7 +7562,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			// Remove empty values from sectionIDs array
 			sectionIDs = sectionIDs.filter(function(value){
-				return value != ''; 
+				return value != '';
 			});
 
 			// Store in a global variable
@@ -7572,7 +7572,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				// Default Root Margin
 				var rootMargin = '-20% 0px -79.9% 0px';
-				
+
 				// Spy Offset
 				if( $( sectionIDs[i] ).data('spy-offset') ) {
 					var rootMarginOffset = $( sectionIDs[i] ).data('spy-offset'),
@@ -7600,7 +7600,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 										newValue = Math.abs(valueToInt) - rootMarginOffset;
 									}
 									break;
-							
+
 							}
 
 							if( isNegativeOffset ) {
@@ -7627,10 +7627,10 @@ if( $('[data-copy-to-clipboard]').length ) {
 							$( target ).find('.nav > li a').removeClass('active');
 							$( target ).find('.nav > li a[href="#'+ $section[0].id +'"]').addClass('active');
 						}
-						
+
 					}
 
-				this.scrollSpyIntObs( selector, callback, { 
+				this.scrollSpyIntObs( selector, callback, {
 					rootMargin: rootMargin,
 					threshold: 0
 				}, true, i, true);
@@ -7669,7 +7669,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 						// Unobserve
 						if( !alwaysObserve ) {
-							observer.unobserve(entry.target);   
+							observer.unobserve(entry.target);
 						}
 
 					} else {
@@ -7684,7 +7684,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 				}
 			}, intersectionObserverOptions);
-			
+
 			$( $el ).each(function(){
 				observer.observe( $(this)[0] );
 			});
@@ -7717,12 +7717,12 @@ if( $('[data-copy-to-clipboard]').length ) {
 				div.addEventListener("transitionend", () => {
 					document.body.removeChild(div)
 				})
-				
+
 				document.body.appendChild(div)
 
 				if( entry ) {
 					var newdiv = document.createElement("div");
-					
+
 					newdiv.style.backgroundColor = '#000';
 					newdiv.style.color = '#FFF';
 					newdiv.style.paddingTop = '10px';
@@ -7732,7 +7732,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					newdiv.innerHTML = entry.target.id;
 					div.appendChild( newdiv );
 				}
-				
+
 				return div
 			}
 
@@ -8100,7 +8100,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 	  		// Add active class to the first section on page load
 	  		$('.section-wrapper').first().addClass('active');
-			
+
 	        var	flag = false,
 	            scrollableFlag = false,
 	        	touchDirection = '',
@@ -8136,7 +8136,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 		    			index++;
 		    		});
-		    		
+
 			    });
 
 			    $(window).on('section.scroll.mobile.change.header.color', function(e){
@@ -8146,7 +8146,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			    	var $currentSection = e.currentSection,
 			    		headerColor     = $currentSection.data('section-scroll-header-color');
-								    	
+
 			    	$('#header .header-nav').removeClass('header-nav-light-text header-nav-dark-text').addClass('header-nav-' + headerColor + '-text');
 			    	$('#header .header-nav-features').removeClass('header-nav-features-dark header-nav-features-light').addClass('header-nav-features-' + headerColor);
 			    	$('#header .header-social-icons').removeClass('social-icons-icon-dark social-icons-icon-light').addClass('social-icons-icon-' + headerColor);
@@ -8186,7 +8186,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 	        	var wheelDirection = e.originalEvent.wheelDelta == undefined ? e.originalEvent.deltaY > 0 : e.originalEvent.wheelDelta < 0;
 	        	if( $(window).width() < 992 && $('html').hasClass('touch') ) {
 		        	touchendY = event.changedTouches[0].screenY;
-	        		
+
 				    if( touchendY <= touchstartY ) {
 				    	touchDirection = 'up';
 				    }
@@ -8450,7 +8450,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			$('.section-scroll').each(function(){
 				if( $(this).outerHeight() < ( $(window).height() + 3 ) ) {
-					$(this).css({ height: '100vh' });		
+					$(this).css({ height: '100vh' });
 				} else {
 					$(this).addClass('section-scroll-scrollable');
 				}
@@ -8602,7 +8602,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			$(window).on('section.scroll.change.header.color', function(){
 		    	var headerColor = $('.section-wrapper').eq( self.getCurrentIndex() ).find('.section-scroll').data('section-scroll-header-color');
-		    	
+
 		    	$('#header .header-nav').removeClass('header-nav-light-text header-nav-dark-text').addClass('header-nav-' + headerColor + '-text');
 		    	$('#header .header-nav-features').removeClass('header-nav-features-dark header-nav-features-light').addClass('header-nav-features-' + headerColor);
 		    	$('#header .header-social-icons').removeClass('social-icons-icon-dark social-icons-icon-light').addClass('social-icons-icon-' + headerColor);
@@ -8827,13 +8827,13 @@ if( $('[data-copy-to-clipboard]').length ) {
 			self.$destination.attr('data-filter', filter).isotope({
 				filter: currentFilter
 			}).one('arrangeComplete', function( event, filteredItems ) {
-				
+
 				if (self.options.useHash) {
 					if (window.location.hash != '' || self.options.filter.replace('.', '') != '*') {
 						window.location.hash = self.options.filter.replace('.', '');
 					}
 				}
-				
+
 				$(window).trigger('scroll');
 
 			}).trigger('filtered');
@@ -9030,9 +9030,9 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 // Sticky
 (function(theme, $) {
-	
+
 	theme = theme || {};
-	
+
 	var instanceName = '__sticky';
 
 	var PluginSticky = function($el, opts) {
@@ -9082,7 +9082,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 			var self = this,
 				$window = $(window);
-			
+
 			self.options.wrapper.pin(self.options);
 
 			if( self.options.wrapper.hasClass('sticky-wrapper-transparent') ) {
@@ -9109,7 +9109,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 				}
 			}
-			
+
 			return this;
 		},
 
@@ -9122,8 +9122,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 				class_to_check = ( self.options.wrapper.hasClass('sticky-wrapper-effect-1') ) ? 'sticky-effect-active' : 'sticky-active';
 
 			$window.on('scroll sticky.effect.active', function(){
-				if( self.options.wrapper.hasClass( class_to_check ) ) {		
-					if( sticky_activate_flag ) {			
+				if( self.options.wrapper.hasClass( class_to_check ) ) {
+					if( sticky_activate_flag ) {
 						if( $logo.attr('data-change-src') ) {
 							self.changeLogoSrc(true);
 						}
@@ -9131,8 +9131,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 						sticky_activate_flag = false;
 						sticky_deactivate_flag = true;
 					}
-				} else {	
-					if( sticky_deactivate_flag ) {				
+				} else {
+					if( sticky_deactivate_flag ) {
 						if( $logo.attr('data-change-src') ) {
 							self.changeLogoSrc(false);
 						}
@@ -9154,12 +9154,12 @@ if( $('[data-copy-to-clipboard]').length ) {
 				}
 
 				$window.on('scroll', function(){
-					if( self.options.stickyStartEffectAt < $window.scrollTop() ) {	
+					if( self.options.stickyStartEffectAt < $window.scrollTop() ) {
 						self.options.wrapper.addClass('sticky-effect-active');
 						is_backing = true;
 
 						$window.trigger('sticky.effect.active');
-					} else {	
+					} else {
 						if( is_backing ) {
 							self.options.wrapper.find('.sticky-body').addClass('position-fixed');
 							is_backing = false;
@@ -9203,7 +9203,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			} else {
 				return new PluginSticky($this, opts);
 			}
-			
+
 		});
 	}
 
@@ -9568,7 +9568,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					e.preventDefault();
 					$.get(self.options.refreshCaptchaURL, function(url) {
 						$('#captcha-image').attr('src', url);
-					});					
+					});
 				});
 
 			},
@@ -9918,7 +9918,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				// Side Header / Side Header Hamburguer Sidebar (Reverse Dropdown)
 				if($html.hasClass('side-header') || $html.hasClass('side-header-hamburguer-sidebar')) {
-					
+
 					// Side Header Right / Side Header Hamburguer Sidebar Right
 					if($html.hasClass('side-header-right') || $html.hasClass('side-header-hamburguer-sidebar-right')) {
 						if(!$html.hasClass('side-header-right-no-reverse')) {
@@ -9927,7 +9927,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 
 				} else {
-					
+
 					// Reverse
 					var checkReverseFlag = false;
 					self.checkReverse = function() {
@@ -9996,7 +9996,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 								divisor = $(document).height() / $(window).height();
 
 							    self.$menuFloating.find('.header-column > .header-row').css({
-							    	transform : 'translateY( calc('+ scrollPercent +'vh - '+ st / divisor +'px) )' 
+							    	transform : 'translateY( calc('+ scrollPercent +'vh - '+ st / divisor +'px) )'
 							    });
 							});
 						}
@@ -10037,7 +10037,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 										overflow: 'visible',
 										'overflow-y': 'visible'
 									});
-									
+
 									if( nextMenuHeightDiff > 0 ) {
 										nextMenu.css({
 											overflow: 'hidden',
@@ -10076,7 +10076,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 
 					$(window).trigger('resize');
-					
+
 					if( $(window).width() > 991 ) {
 						slideNavigation.build();
 					}
@@ -10099,19 +10099,19 @@ if( $('[data-copy-to-clipboard]').length ) {
 				if( $(window).width() > 991 ) {
 					var focusFlag = false;
 					$header.find('.header-nav-main nav > ul > li > a').on('focus', function(){
-						
+
 						if( $(window).width() > 991 ) {
 							if( !focusFlag ) {
 								focusFlag = true;
 								$(this).trigger('blur');
-								
+
 								self.focusMenuWithChildren();
 							}
 						}
 
 					});
 				}
-				
+
 				return this;
 			},
 
@@ -10174,7 +10174,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					$header.find('.dropdown-toggle, .dropdown-submenu > a')
 						.append('<i class="fas fa-chevron-down"></i>');
 				}
-				
+
 				$header.find('.dropdown-toggle[href="#"], .dropdown-submenu a[href="#"], .dropdown-toggle[href!="#"] .fa-chevron-down, .dropdown-submenu a[href!="#"] .fa-chevron-down').on('click', function(e) {
 					e.preventDefault();
 					if ($window.width() < 992) {
@@ -10291,7 +10291,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				// Hamburguer Menu
 				var $hamburguerMenuBtn = $('.hamburguer-btn:not(.side-panel-toggle)'),
 					$hamburguerSideHeader = $('#header.side-header, #header.side-header-overlay-full-screen');
-				
+
 				$hamburguerMenuBtn.on('click', function(){
 					if($(this).attr('data-set-active') != 'false') {
 						$(this).toggleClass('active');
@@ -10304,8 +10304,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				$('.hamburguer-close:not(.side-panel-toggle)').on('click', function(){
 					$('.hamburguer-btn:not(.hamburguer-btn-side-header-mobile-show)').trigger('click');
-				});				
-				
+				});
+
 				// Set Header Body Height when open mobile menu
 				$('.header-nav-main nav').on('show.bs.collapse', function () {
 				 	$(this).removeClass('closed');
@@ -10342,7 +10342,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					if( $window.width() < 992 && $header.hasClass('header-effect-shrink') ) {
 						if( $('.header-btn-collapse-nav').attr('aria-expanded') == 'true' ) {
 							$('.header-body').animate({
-						 		height: ( $('.header-nav-main nav').outerHeight(true) + theme.StickyHeader.options.stickyHeaderContainerHeight ) + ( ($('.header-nav-bar').length) ? $('.header-nav-bar').outerHeight() : 0 ) 
+						 		height: ( $('.header-nav-main nav').outerHeight(true) + theme.StickyHeader.options.stickyHeaderContainerHeight ) + ( ($('.header-nav-bar').length) ? $('.header-nav-bar').outerHeight() : 0 )
 						 	});
 						}
 					}
@@ -10358,12 +10358,12 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 				});
 
-				// Remove Open Class on Resize		
+				// Remove Open Class on Resize
 				$window.on('resize.removeOpen', function(e) {
 					if( e.from == 'header-nav-click-to-open' ) {
 						return;
 					}
-					
+
 					setTimeout(function() {
 						if( $window.width() > 991 ) {
 							$header.find('.dropdown.open').removeClass('open');
@@ -10375,7 +10375,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 				$(document).ready(function(){
 					if( $window.width() > 991 ) {
 						var flag = false;
-						
+
 						$window.on('resize', function(e) {
 							if( e.from == 'header-nav-click-to-open' ) {
 								return;
@@ -10434,22 +10434,22 @@ if( $('[data-copy-to-clipboard]').length ) {
 							if ($this.is("[data-hash-offset-sm]") && windowWidth > 576) {
 								offset = $this.data('hash-offset-sm');
 							}
-							
+
 							// Hash Offset MD
 							if ($this.is("[data-hash-offset-md]") && windowWidth > 768) {
 								offset = $this.data('hash-offset-md');
 							}
-							
+
 							// Hash Offset LG
 							if ($this.is("[data-hash-offset-lg]") && windowWidth > 992) {
 								offset = $this.data('hash-offset-lg');
 							}
-							
+
 							// Hash Offset XL
 							if ($this.is("[data-hash-offset-xl]") && windowWidth > 1200) {
 								offset = $this.data('hash-offset-xl');
 							}
-							
+
 							// Hash Offset XXL
 							if ($this.is("[data-hash-offset-xxl]") && windowWidth > 1400) {
 								offset = $this.data('hash-offset-xxl');
@@ -10474,7 +10474,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 											// Close Side Header
 											$hamburguerSideHeader.addClass('side-header-hide');
 											$html.addClass('side-header-hide');
-											
+
 											$window.trigger('resize');
 
 											self.scrollToTarget(target, offset);
@@ -10494,14 +10494,14 @@ if( $('[data-copy-to-clipboard]').length ) {
 														} else {
 															$clickTarget.trigger('click');
 														}
-														
+
 													}, clickDelay);
 												}
 
 											}
 
 										}, delay);
-										
+
 									}
 
 									return;
@@ -10568,7 +10568,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 							$('html').toggleClass('side-panel-open');
 						}, delay);
 
-						$(this).data('is-active', true);						
+						$(this).data('is-active', true);
 					});
 
 					$(document).on('click', function(e){
@@ -10825,7 +10825,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			initialize: function($wrapper, opts) {
 				if (initialized) {
 					return this;
-				}				
+				}
 
 				initialized = true;
 				this.$wrapper = ($wrapper || this.defaults.wrapper);
@@ -10863,7 +10863,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					self.options.wrapper = $('.header');
 					self.options.headerBody = $('.header .header-body');
 				}
-				
+
 				var	$html = $('html'),
 					$window = $(window),
 					sideHeader = $html.hasClass('side-header'),
@@ -10880,7 +10880,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 				if (self.options.stickyScrollUp) {
 					$html.addClass('sticky-header-scroll-direction');
-				}				
+				}
 
 				// Notice Top Bar First Load
 				if( $('.notice-top-bar').get(0) ) {
@@ -10898,7 +10898,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 								}
 						    }, 0);
 						});
-					}					
+					}
 				}
 
 				// Set Start At
@@ -10931,7 +10931,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 					}
 
 					if( self.options.stickyEffect == 'shrink' ) {
-						
+
 						// Prevent wrong visualization of header when reload on middle of page
 						$(document).ready(function(){
 							if( $window.scrollTop() >= self.options.stickyStartAt ) {
@@ -11001,7 +11001,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 					// Scroll Up
 					if (self.options.stickyScrollUp) {
-						
+
 					    // Get the new Value
 					    self.options.stickyScrollNewValue = window.pageYOffset;
 
@@ -11017,7 +11017,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 					}
 				};
-				
+
 				// Activate Sticky Header
 				self.activateStickyHeader = function() {
 					if ($window.width() < 992) {
@@ -11128,7 +11128,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 							if( $window.scrollTop() > $('.body').offset().top ) {
 								// Set Header Body Position Fixed
-								self.options.headerBody.css('position','fixed');								
+								self.options.headerBody.css('position','fixed');
 							}
 
 						} else {
@@ -11205,7 +11205,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 					self.changeLogo = function(activate) {
 						if(activate) {
-							
+
 							$logo.css({
 								'top': logoSmallTop,
 								'width': logoSmallWidth,
@@ -11213,7 +11213,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 							});
 
 						} else {
-							
+
 							$logo.css({
 								'top': 0,
 								'width': logoWidth,
@@ -11316,7 +11316,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 							self.options.headerBody.css({
 								'position' : 'fixed',
 								'top' : 0
-							});								
+							});
 						} else {
 							self.options.headerBody.css({
 								'position' : 'absolute',

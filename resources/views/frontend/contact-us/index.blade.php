@@ -1,5 +1,6 @@
 @extends('master.frontend')
-@section('content')
+@section('title',__('backend.contact-us').' | ' )
+@section('front')
     <div role="main" class="main">
         <div id="googlemaps" class="google-map mt-0" style="height: 500px;">
             <iframe

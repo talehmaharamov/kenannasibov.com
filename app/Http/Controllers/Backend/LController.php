@@ -12,9 +12,12 @@ class LController extends Controller
 {
     public function switchLang($lang)
     {
-        if (array_key_exists($lang, Config::get('languages'))) {
-            Session::put('applocale', $lang);
-        }
+        dd(Session::get('blang'));
+//        if (array_key_exists($lang, Config::get('languages'))) {
+//            Session::put('applocale', $lang);
+//        }
+        app()->setLocale($lang);
+        session()->put('blang', $lang);
         return redirect()->back();
     }
 

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('locale')->index();
             $table->string('title');
             $table->longText('content');
+            $table->text('description')->nullable();
+            $table->text('keywords')->nullable();
             $table->unique(['paylasim_id', 'locale']);
             $table->foreign('paylasim_id')->references('id')->on('paylasims')->onDelete('cascade');
             $table->timestamps();
