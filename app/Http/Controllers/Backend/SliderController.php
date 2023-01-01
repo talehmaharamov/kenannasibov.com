@@ -88,7 +88,6 @@ class SliderController extends Controller
             return redirect()->route('backend.slider.index');
         }
     }
-
     public function sliderOrder(Request $request, $id)
     {
         abort_if(Gate::denies('slider edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -98,7 +97,6 @@ class SliderController extends Controller
             foreach (Slider::orderBy('order', 'asc')->get() as $sl) {
                 $orders[] = $sl->order;
             }
-
             if ($request->direction == "up") {
                 $prevKey = (array_search($slider->order, $orders)) - 1;
                 Slider::where('order', $orders[$prevKey])->update([
