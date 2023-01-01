@@ -1,6 +1,5 @@
 <?php
 
-
 //Backend Controllers
 use App\Http\Controllers\Backend\AboutController as BAbout;
 use App\Http\Controllers\Backend\CategoryController as BCategory;
@@ -50,6 +49,7 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/posts/pending/{id}',[BPost::class,'pendingPostId'])->name('pendingPostId');
     Route::get('/posts/pending-post/{id}',[BPost::class,'ppost'])->name('ppost');
     Route::get('posts/aprove/{id}',[BPost::class,'approvePost'])->name('approvePost');
+    Route::get('/slider/{id}/change-order',[BSlider::class,'sliderOrder'])->name('sliderOrder');
 
     //Statuses
     Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
@@ -59,7 +59,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/seo/{id}/change-status', [BMeta::class, 'seoStatus'])->name('seoStatus');
     Route::get('/slider/{id}/change-status', [BSlider::class, 'sliderStatus'])->name('sliderStatus');
     Route::get('/post/{id}/change-status', [BPost::class, 'postStatus'])->name('postStatus');
-
 
     //Delete
     Route::get('/site-languages/{id}/delete', [BSiteLan::class, 'delSiteLang'])->name('delSiteLang');
@@ -75,8 +74,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/report/clean-all', [BReport::class, 'cleanAllReport'])->name('cleanAllReport');
     Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
     Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
-
-
 
     //Resources
     Route::resource('/categories', BCategory::class);
@@ -103,14 +100,9 @@ Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLangua
         $countView->increment('contact_us_views');
         return view('frontend.contact-us.index');
     })->name('contact-us-page');
-    Route::get('/google',function (){
-        $a = Analytics::fetchMostVisitedPages(Period::days(7));
-        dd($a);
-    });
     Route::post('/contact-us/send-message', [BContact::class, 'sendMessage'])->name('sendMessage');
     Route::get('/', [FHome::class, 'index'])->name('index');
     Route::get('/about', [FAbout::class, 'index'])->name('about');
-//    Route::get('/news/{id}', [FPost::class, 'index'])->name('post');
     Route::get('/post/{id}', [FPost::class, 'selectedPost'])->name('selectedPost');
     Route::get('/news', [FPost::class, 'allPosts'])->name('allPosts');
     Route::get('/categories/{slug}', [FCategory::class, 'index'])->name('selectedCategory');

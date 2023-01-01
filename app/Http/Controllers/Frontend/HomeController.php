@@ -48,7 +48,7 @@ class HomeController extends Controller
             }
         }
         $countView = View::find(1)->increment('home_views');
-        $sliders = Slider::where('status', 1)->get();
+        $sliders = Slider::where('status', 1)->orderBy('order','asc')->get();
         return view('frontend.index', get_defined_vars());
     }
 
