@@ -364,6 +364,8 @@ body[data-topbar=colored] .app-search input.form-control::-webkit-input-placehol
     padding: 0;
 }
 
+
+
 .page-title-box h4 {
     font-size: 15px;
     text-transform: uppercase;
@@ -533,16 +535,19 @@ body[data-layout=horizontal] .footer {
     transition: transform 0.2s, -webkit-transform 0.2s;
     font-size: 1rem;
 }
-.wbb-all{
-word-break: break-word;
+
+.wbb-all {
+    word-break: break-word;
 }
 
-.content-post p img{
-    width: 100%; !important;
+.content-post p img {
+    width: 100%;
+!important;
 }
 
-.h1-posts{
-    font-size: 1.8em; !important;
+.h1-posts {
+    font-size: 1.8em;
+!important;
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 33px;
@@ -555,7 +560,8 @@ word-break: break-word;
 #sidebar-menu ul li a {
     display: block;
     padding: 0.625rem 1.5rem;
-    color: black; !important;
+    color: black;
+!important;
     position: relative;
     font-size: 13.3px;
     -webkit-transition: all 0.4s;
@@ -2271,8 +2277,10 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
     .fc .fc-toolbar {
         display: block;
     }
+
     .navbar-brand-box {
-        background-color: #252b3b; !important;
+        background-color: #252b3b;
+    !important;
     }
 
 }

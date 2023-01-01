@@ -113,7 +113,7 @@ return [
     'pending' => 'Pending',
     'suggestions' => 'Suggestions',
     'search-result' => 'Search result',
-    'slug' => '',
+    'slug' => 'Slug',
     '' => '',
     '' => '',
     '' => '',

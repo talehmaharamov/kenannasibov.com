@@ -12,7 +12,7 @@ return [
      * to learn how to get this file. You can also pass the credentials as an array
      * instead of a file path.
      */
-    'service_account_credentials_json' => base_path('google/dirnis-google.json'),
+    'service_account_credentials_json' => public_path('google\dirnis-google.json'),
 
     /*
      * The amount of minutes the Google API responses will be cached.

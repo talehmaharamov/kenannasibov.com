@@ -73,6 +73,7 @@ class SliderController extends Controller
     {
         abort_if(Gate::denies('slider delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         try {
+            unlink( Slider::find($id)->photo);
             Slider::find($id)->delete();
             alert()->success(__('messages.success'));
             return redirect()->route('backend.slider.index');

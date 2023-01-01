@@ -1,5 +1,5 @@
 @extends('master.frontend')
-@section('title',__('backend.posts').' | ')
+@section('title',$searchIndex.' | ')
 @section('front')
 <div role="main" class="main">
     <div class="container py-4">

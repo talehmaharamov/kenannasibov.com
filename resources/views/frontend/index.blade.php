@@ -66,9 +66,11 @@
             @endif
             <div class="text-center py-3 mb-4">
                 <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:90px"
+                     style="display:block"
                      data-ad-client="ca-pub-9095041631453435"
-                     data-ad-slot="5412897216"></ins>
+                     data-ad-slot="5412897216"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
             </div>
             <div class="row pb-1 pt-2">
                 <div class="col-md-12">

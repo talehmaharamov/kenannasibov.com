@@ -15,7 +15,7 @@
                                 <a href="{{ route('frontend.selectedPost',$post->id) }}">
                                     <img src="{{ asset($post->photo) }}"
                                          class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" width="100%"
-                                         alt=""/>
+                                         alt="{{ $post->translate(app()->getLocale())->title }}"/>
                                 </a>
                             </div>
                             <div class="post-date ms-0">

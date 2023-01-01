@@ -36,21 +36,22 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
         abort_if(Gate::denies('posts create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $langCodes = SiteLanguage::where('status', 1)->get();
         $paylasim = new Paylasim();
         if ($request->hasFile('photo')) {
-            $paylasim->photo = upload('posts' . $paylasim->id, $request->file('photo'));
+            $paylasim->photo = upload('posts/'.date('dmY'), $request->file('photo'));
         }
         $paylasim->category_id = $request->category;
         $paylasim->user_id = auth()->user()->id;
         if (Auth::user()->hasDirectPermission('confirm-post')) {
             $paylasim->admin_status = 1;
+            $paylasim->admin_id = Auth::user()->id;
         } else {
             $paylasim->admin_status = 0;
+            $paylasim->admin_id = 0;
         }
-
-        $paylasim->admin_id = 0;
         $paylasim->status = 1;
         $paylasim->view_count = 0;
         $paylasim->save();
@@ -119,6 +120,7 @@ class PostController extends Controller
     {
         abort_if(Gate::denies('confirm-post'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $post = Paylasim::find($id);
+        $releatedPosts = Paylasim::where('category_id',$post->category_id)->take(4)->where('id','!=',$post->id)->orderBy('created_at','desc')->get();
         return view('frontend.posts.index', get_defined_vars());
     }
 
@@ -144,7 +146,7 @@ class PostController extends Controller
         try {
             DB::transaction(function () use ($request, $post) {
                 if ($request->hasFile('photo')) {
-                    $post->photo = upload('posts', $request->file('photo'));
+                    $post->photo = upload('posts/'.date('dmY'), $request->file('photo'));
                 }
                 if (Auth::user()->hasDirectPermission('confirm-post')) {
                     $post->admin_status = 1;

@@ -1878,6 +1878,11 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
     margin-top: 16px
 }
 
+.login-button{
+    background-color: #246429;
+    color: white;
+}
+
 .navs-carousel .owl-nav button {
     width: 30px;
     height: 30px;

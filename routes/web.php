@@ -34,6 +34,7 @@ use Spatie\Analytics\AnalyticsFacade as Analytics;
 use Spatie\Analytics\Period;
 
 
+
 Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:sanctum','backendLanguage'], function () {
 
     //General

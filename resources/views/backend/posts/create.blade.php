@@ -31,7 +31,7 @@
                                         <div class="form-group row">
                                             <div class="mb-3">
                                                 <label>@lang('backend.title') <span class="text-danger">*</span></label>
-                                                <input name="title[{{ $lan->code }}]" type="text" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.title')">
+                                                <input name="title[{{ $lan->code }}]" type="text" class="form-control" required=""  placeholder="@lang('backend.title')">
                                                 <div class="valid-feedback">
                                                     @lang('backend.title')({{$lan->code}}) @lang('messages.is-correct')
                                                 </div>
@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label>@lang('backend.meta') @lang('backend.keywords')</label>
-                                                <input name="meta_keywords[{{ $lan->code }}]" type="text" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.meta') @lang('backend.keywords')">
+                                                <input name="meta_keywords[{{ $lan->code }}]" type="text" class="form-control" placeholder="@lang('backend.meta') @lang('backend.keywords')">
                                                 <div class="valid-feedback">
                                                     @lang('backend.meta') @lang('backend.keywords')({{$lan->code}}) @lang('messages.is-correct')
                                                 </div>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label>@lang('backend.meta') @lang('backend.description')</label>
-                                                <input name="meta_description[{{ $lan->code }}]" type="text" class="form-control" required="" data-parsley-minlength="6" placeholder="@lang('backend.meta') @lang('backend.description')">
+                                                <input name="meta_description[{{ $lan->code }}]" type="text" class="form-control" placeholder="@lang('backend.meta') @lang('backend.description')">
                                                 <div class="valid-feedback">
                                                     @lang('backend.meta') @lang('backend.description')({{$lan->code}}) @lang('messages.is-correct')
                                                 </div>
@@ -74,7 +74,7 @@
                                     @endforeach
                                     <div class="mb-3">
                                         <label>@lang('backend.photo') <span class="text-danger">*</span></label>
-                                        <input name="photo" type="file" required="" class="form-control" data-parsley-minlength="6">
+                                        <input name="photo" type="file" required="" class="form-control" >
                                         <div class="valid-feedback">
                                             @lang('backend.photo') @lang('messages.is-correct')
                                         </div>
@@ -87,7 +87,18 @@
                                         <div>
                                             <select class="form-control" name="category">
                                                 @foreach($categories as $cat)
-                                                <option value="{{ $cat->id }}"> {{ $cat->translate(app()->getLocale())->name }} </option>
+                                                    <option
+                                                        value="{{ $cat->id }}">
+                                                        @foreach(active_langs() as $langs)
+                                                            @if($loop->first)
+                                                                {{$cat->translate($langs->code)->name}},
+                                                            @elseif($loop->last)
+                                                                {{$cat->translate($langs->code)->name}}.
+                                                            @else
+                                                                {{$cat->translate($langs->code)->name}},
+                                                            @endif
+                                                        @endforeach
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

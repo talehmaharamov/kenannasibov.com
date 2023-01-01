@@ -21,9 +21,9 @@
                 <button type="button" class="btn header-item waves-effect"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @if(app()->getLocale() == 'en')
-                        <img class="" src="{{ asset('backend/images/flags/us.jpg')}}" height="16">
+                        <img class="" src="{{ asset('backend/images/flags/en.jpg')}}" height="16">
                     @elseif(app()->getLocale() == 'az')
-                        <img class="" src="{{ asset('backend/images/flags/aze.png')}}" height="16">
+                        <img class="" src="{{ asset('backend/images/flags/az.png')}}" height="16">
                     @else
                         <img class="" src="{{ asset('backend/images/flags/ru.jpg')}}" height="16">
                     @endif
@@ -31,15 +31,15 @@
                 <div class="dropdown-menu dropdown-menu-end">
 
                     <a href="{{ route('backend.switchLang','az') }}" class="dropdown-item notify-item">
-                        <img src="{{ asset('backend/images/flags/aze.png')}}" alt="user-image" class="me-1" height="12">
+                        <img src="{{ asset('backend/images/flags/az.png')}}" class="me-1" height="12">
                         <span class="align-middle">Azərbaycan</span>
                     </a>
                     <a href="{{ route('backend.switchLang','en') }}" class="dropdown-item notify-item">
-                        <img src="{{ asset('backend/images/flags/us.jpg')}}" alt="user-image" class="me-1" height="12">
+                        <img src="{{ asset('backend/images/flags/en.jpg')}}" class="me-1" height="12">
                         <span class="align-middle">English</span>
                     </a>
                     <a href="{{ route('backend.switchLang','ru') }}" class="dropdown-item notify-item">
-                        <img src="{{ asset('backend/images/flags/ru.jpg')}}" alt="user-image" class="me-1" height="12">
+                        <img src="{{ asset('backend/images/flags/ru.jpg')}}" class="me-1" height="12">
                         <span class="align-middle">Русский</span>
                     </a>
                 </div>

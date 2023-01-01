@@ -15,17 +15,17 @@
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">@lang('backend.slider')</h4>
-                            <a href="{{ route('backend.slider.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> &nbsp;@lang('backend.add-new')
-                            </a>
+                            <a href="{{ route('backend.slider.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> &nbsp;@lang('backend.add-new')</a>
                         </div>
                     </div>
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>@lang('backend.photo'):</th>
                                 <th class="text-center">@lang('backend.alt'):</th>
-                                <th class="text-center">@lang('backend.time')</th>
+                                <th class="text-center">@lang('backend.time'):</th>
                                 <th class="text-center">@lang('backend.status'):</th>
                                 <th class="text-center">@lang('backend.actions'):</th>
                             </tr>
@@ -44,7 +44,7 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" title="@lang('backend.edit')" href={{ route('backend.slider.edit',['slider'=>$slider->id]) }}>
+                                    <a class="btn btn-primary" title="@lang('backend.edit')" href="{{ route('backend.slider.edit',['slider'=>$slider->id])}}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger" title="@lang('backend.delete')" href="{{ route('backend.delSlider',['id'=>$slider->id]) }}">

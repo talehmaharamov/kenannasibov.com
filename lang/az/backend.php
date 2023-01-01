@@ -115,7 +115,6 @@ return [
     'pending' => 'Gözləmədədir',
     'suggestions' => 'Təkliflər',
     'search-result' => 'Axtarış nəticəsi',
-    'slug' => '',
     '' => '',
     '' => '',
     '' => '',
