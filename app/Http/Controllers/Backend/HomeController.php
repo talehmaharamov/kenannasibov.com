@@ -29,14 +29,9 @@ class HomeController extends Controller
             'contactUs' => convert_number(Contact::count()),
             'posts' => convert_number(Paylasim::where('category_id', '!=', Category::where('slug', 'news')->value('id'))->count()),
             'directors' => convert_number(Director::count()),
-            'homeCount' => convert_number(View::find(1)->value('home_views')),
-            'categoriesCount' => convert_number(View::find(1)->value('categories_views')),
-            'newsCount' => convert_number(View::find(1)->value('news_views')),
-            'aboutCount' => convert_number(View::find(1)->value('about_views')),
-            'contactCount' => convert_number(View::find(1)->value('contact_us_views')),
             'sliderCount' => convert_number(Slider::count()),
             'tagCount' => convert_number(MetaTag::count()),
-            'sharedPostCount' => convert_number(Paylasim::where('user_id',Auth::user()->id)->count()),
+            'sharedPostCount' => convert_number(Paylasim::where('user_id', Auth::user()->id)->count()),
         ];
         return view('backend.dashboard', get_defined_vars());
     }

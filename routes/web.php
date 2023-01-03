@@ -27,7 +27,6 @@ use App\Http\Controllers\Frontend\PostController as FPost;
 use App\Http\Controllers\Frontend\CategoryController as FCategory;
 
 //General
-use App\Models\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -101,11 +100,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
 
 Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLanguage'], function () {
     Route::get('/change-language/{dil}', [LChangeLan::class, 'frontLanguage'])->name('frontLanguage');
-    Route::get('/contact-us', function () {
-        $countView = View::find(1);
-        $countView->increment('contact_us_views');
-        return view('frontend.contact-us.index');
-    })->name('contact-us-page');
     Route::post('/contact-us/send-message', [BContact::class, 'sendMessage'])->name('sendMessage');
     Route::get('/', [FHome::class, 'index'])->name('index');
     Route::get('/about', [FAbout::class, 'index'])->name('about');

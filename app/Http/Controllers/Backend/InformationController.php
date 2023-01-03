@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-use App\Http\Requests\Update\InformationRequest;
 use App\Http\Requests\Update\InformationPasswordRequest as PasswordRequest;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class InformationController extends Controller
 {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Paylasim;
-use App\Models\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +27,6 @@ class PostController extends Controller
             ->where('category_id', '=', Category::where('slug', 'news')->value('id'))
             ->where('admin_status', '=', 1)
             ->get();
-        $countView = View::find(1)->increment('news_views');
         return view('frontend.posts.all', get_defined_vars());
     }
 

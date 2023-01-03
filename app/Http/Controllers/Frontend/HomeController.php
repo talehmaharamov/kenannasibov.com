@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Backend\NewsletterController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Director;
 use App\Models\Newsletter;
 use App\Models\Paylasim;
 use App\Models\PaylasimTranslation;
 use App\Models\Slider;
-use App\Models\View;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Spatie\Analytics\Analytics;
-use Spatie\Analytics\Period;
 
 class HomeController extends Controller
 {
@@ -48,7 +43,6 @@ class HomeController extends Controller
                 array_push($exceptCats, $cat->id);
             }
         }
-        $countView = View::find(1)->increment('home_views');
         $sliders = Slider::where('status', 1)->orderBy('order', 'asc')->get();
         return view('frontend.index', get_defined_vars());
     }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Forigner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use PHPMailer\PHPMailer\Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\HttpFoundation\Response;
 
