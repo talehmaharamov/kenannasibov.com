@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $permission->id }}</td>
                                 <td>{{ $permission->name }}</td>
-                                <td>{{ date('d.m.Y h:i:s',strtotime($permission->created_at))}}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($permission->created_at))}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-primary" href={{ route('backend.permissions.edit',['permission'=>$permission->id]) }}>
                                         <i class="fas fa-edit"></i>

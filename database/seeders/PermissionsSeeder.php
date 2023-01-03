@@ -66,7 +66,10 @@ class PermissionsSeeder extends Seeder
             'information edit',
             'information delete',
             'dashboard index',
-            'confirm-post'
+            'confirm-post',
+            'newsletter index',
+            'newsletter create',
+            'newsletter delete',
         ];
         foreach ($permissions as $permission){
             Permission::create([

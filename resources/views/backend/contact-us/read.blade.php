@@ -18,7 +18,7 @@
                                     <img class="me-3 rounded-circle avatar-sm" src="{{asset('backend/images/users/mail.png')}}" alt="Generic placeholder image">
                                     <div class="flex-1">
                                         <h5 class="font-size-16 my-1">{{ $message->name }}</h5>
-                                        <small> {{ date('d.m.Y h:i:s',strtotime($message->created_at))}}</small>
+                                        <small> {{ date('d.m.Y H:i:s',strtotime($message->created_at))}}</small>
                                     </div>
                                 </div>
                                 <div>

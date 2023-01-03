@@ -41,7 +41,7 @@
                                 @foreach(active_langs() as $lan)
                                 <td>{{ $director->translate($lan->code)->name }}</td>
                                 @endforeach
-                                <td>{{ date('d.m.Y h:i:s',strtotime($director->created_at)) }}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($director->created_at)) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.directorStatus',['id'=>$director->id]) }}" title="@lang('backend.status')">
                                         <input type="checkbox" id="switch" switch="primary" {{ $director->status == 1 ? 'checked' : '' }} />

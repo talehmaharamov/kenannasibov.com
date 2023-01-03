@@ -40,7 +40,7 @@
                                 <td class="text-center">{{ $setting->id }}</td>
                                 <td class="text-center">{{ $setting->name }}</td>
                                 <td class="text-center">{{ $setting->link }}</td>
-                                <td>{{ date('d.m.Y h:i:s',strtotime($setting->created_at))}}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($setting->created_at))}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.settingStatus',['id'=>$setting->id]) }}" title="@lang('backend.status')">
                                         <input type="checkbox" id="switch" switch="primary" {{ $setting->status == 1 ? 'checked' : '' }} />

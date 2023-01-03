@@ -45,7 +45,7 @@
                                     <td class="text-center">{{ $slider->order }}</td>
                                     <td class="text-center"><img src="{{ asset($slider->photo) }}" width="100" height="50">
                                     <td class="text-center">{{ $slider->alt }}</td>
-                                    <td>{{ date('d.m.Y h:i:s',strtotime($slider->created_at))}}</td>
+                                    <td>{{ date('d.m.Y H:i:s',strtotime($slider->created_at))}}</td>
                                     <td class="text-center">
                                         <a href="{{ route('backend.sliderStatus',['id'=>$slider->id]) }}"
                                            title="@lang('backend.status')">

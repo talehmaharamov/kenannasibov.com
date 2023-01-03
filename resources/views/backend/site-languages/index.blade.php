@@ -40,7 +40,7 @@
                                 <td class="text-center">{{ $sl->code }}</td>
                                 <td class="text-center"><img src="{{ asset($sl->icon) }}" width="32" height="24">
                                 </td>
-                                <td>{{ date('d.m.Y h:i:s',strtotime($sl->created_at))}}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($sl->created_at))}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.siteLanStatus',['id'=>$sl->id]) }}" title="@lang('backend.status')">
                                         <input type="checkbox" id="switch" switch="primary" {{ $sl->status == 1 ? 'checked' : '' }} />

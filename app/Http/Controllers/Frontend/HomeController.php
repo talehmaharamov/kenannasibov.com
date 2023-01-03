@@ -11,9 +11,10 @@ use App\Models\Paylasim;
 use App\Models\PaylasimTranslation;
 use App\Models\Slider;
 use App\Models\View;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use PHPMailer\PHPMailer\Exception;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Analytics\Analytics;
 use Spatie\Analytics\Period;
 
@@ -35,9 +36,9 @@ class HomeController extends Controller
         foreach ($cats as $cat) {
             if (
                 Paylasim::where('category_id', '=', $cat->id)
-                ->where('status', '=', 1)
-                ->where('admin_status', '=', 1)
-                ->count() > 3
+                    ->where('status', '=', 1)
+                    ->where('admin_status', '=', 1)
+                    ->count() > 3
             ) {
                 $nws = Paylasim::where('category_id', $cat->id)
                     ->take(4)
@@ -48,7 +49,7 @@ class HomeController extends Controller
             }
         }
         $countView = View::find(1)->increment('home_views');
-        $sliders = Slider::where('status', 1)->orderBy('order','asc')->get();
+        $sliders = Slider::where('status', 1)->orderBy('order', 'asc')->get();
         return view('frontend.index', get_defined_vars());
     }
 
@@ -75,12 +76,37 @@ class HomeController extends Controller
     public function newsletter(Request $request)
     {
         try {
-            Newsletter::create([
-                'mail' => $request->newsletterEmail,
+            $validator = Validator::make($request->all(), [
+                'newsletterEmail' => 'unique:newsletter|required|max:255',
             ]);
+            $subscriber =  Newsletter::create([
+                'mail' => $request->newsletterEmail,
+                'token' => md5(time()),
+                'status' => 0,
+            ]);
+            $data = [
+                'id' => $subscriber->id,
+                'mail' => $subscriber->mail,
+                'token' => $subscriber->token,
+            ];
+            Mail::send('backend.mail.newsletter', $data, function ($message) use ($subscriber) {
+                $message->to($subscriber->mail);
+                $message->subject('Email adresinizi təsdiq edin!');
+            });
             return redirect()->back()->with('successMessage', __('messages.success'));
         } catch (Exception $e) {
             return redirect()->back()->with('errorMessage', __('messages.error'));
+        }
+    }
+
+    public function verifyMail($id, $token)
+    {
+        $subscriber = Newsletter::find($id);
+        if($subscriber->token == $token){
+            $subscriber->update([
+                'status' => 1,
+            ]);
+            return view('frontend.includes.mail');
         }
     }
 }

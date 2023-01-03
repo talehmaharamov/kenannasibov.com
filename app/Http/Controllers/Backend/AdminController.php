@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -7,6 +9,7 @@ use App\Http\Requests\Backend\Create\AdminRequest as CreateRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
+
 class AdminController extends Controller
 {
     public function index()
@@ -30,11 +33,10 @@ class AdminController extends Controller
             alert()->success(__('messages.success'));
             return redirect()->route('backend.users.index');
         } catch (\Exception $e) {
-            alert()->error(__('messages.error'.$e));
+            alert()->error(__('messages.error' . $e));
             return redirect()->route('backend.users.index');
         }
     }
-
     public function store(CreateRequest $request)
     {
         abort_if(Gate::denies('users create'), Response::HTTP_FORBIDDEN, '403 Forbidden');

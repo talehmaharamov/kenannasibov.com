@@ -83,6 +83,14 @@
                         </a>
                     </li>
                 @endcan
+                @can('newsletter index')
+                    <li>
+                        <a href="{{ route('backend.newsletter.index') }}" class="waves-effect">
+                            <i class="fas fa-user-friends"></i>
+                            <span>@lang('backend.subscribers')</span>
+                        </a>
+                    </li>
+                @endcan
                 {{--                <li>--}}
                 {{--                    <a href="{{ route('backend.statistics.index') }}" class="waves-effect">--}}
                 {{--                        <i class="fas fa-chart-bar"></i>--}}

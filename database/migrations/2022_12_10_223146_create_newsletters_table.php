@@ -10,6 +10,8 @@ return new class extends Migration {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->id();
             $table->string('mail')->unique();
+            $table->text('token');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -28,6 +28,8 @@ use App\Http\Controllers\Frontend\CategoryController as FCategory;
 
 //General
 use App\Models\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Spatie\Analytics\AnalyticsFacade as Analytics;
 use Spatie\Analytics\Period;
@@ -50,6 +52,8 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/posts/pending-post/{id}',[BPost::class,'ppost'])->name('ppost');
     Route::get('posts/aprove/{id}',[BPost::class,'approvePost'])->name('approvePost');
     Route::get('/slider/{id}/change-order',[BSlider::class,'sliderOrder'])->name('sliderOrder');
+    Route::get('/newsletter/history',[BNewsletter::class,'newsletterHistory'])->name('newsletterHistory');
+
 
     //Statuses
     Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
@@ -74,6 +78,8 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/report/clean-all', [BReport::class, 'cleanAllReport'])->name('cleanAllReport');
     Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
     Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
+    Route::get('/newsletter/{id}/delete', [BNewsletter::class, 'delNewsletter'])->name('delNewsletter');
+
 
     //Resources
     Route::resource('/categories', BCategory::class);
@@ -108,4 +114,5 @@ Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLangua
     Route::get('/categories/{slug}', [FCategory::class, 'index'])->name('selectedCategory');
     Route::post('/search',[FHome::class,'search'])->name('search');
     Route::post('/newsletter-add-new',[FHome::class,'newsletter'])->name('newsletter');
+    Route::get('/newsletter/{id}/{token}',[FHome::class,'verifyMail'])->name('verifyMail');
 });

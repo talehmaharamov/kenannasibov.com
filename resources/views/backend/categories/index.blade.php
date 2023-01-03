@@ -40,7 +40,7 @@
                                 @foreach(active_langs() as $lan)
                                 <td>{{ $category->translate($lan->code)->name }}</td>
                                 @endforeach
-                                <td>{{ date('d.m.Y h:i:s',strtotime($category->created_at)) }}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($category->created_at)) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.categoryStatus',['id'=>$category->id]) }}" title="@lang('backend.status')">
                                         <input type="checkbox" id="switch" switch="primary" {{ $category->status == 1 ? 'checked' : '' }} />

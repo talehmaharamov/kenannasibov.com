@@ -40,7 +40,7 @@
                                 <td class="text-center">{{ $forigner->phone }}</td>
                                 <td class="text-center">{{ $forigner->location }}</td>
 
-                                <td>{{ date('d.m.Y h:i:s',strtotime($forigner->created_at))}}</td>
+                                <td>{{ date('d.m.Y H:i:s',strtotime($forigner->created_at))}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-primary" href={{ route('backend.forigners.edit',['forigner'=>$forigner->id]) }}>
                                         <i class="fas fa-edit"></i>
