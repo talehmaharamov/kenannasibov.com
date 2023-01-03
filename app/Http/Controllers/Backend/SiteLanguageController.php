@@ -18,20 +18,17 @@ class SiteLanguageController extends Controller
         $siteLanguages = SiteLanguage::all();
         return view('backend.site-languages.index', get_defined_vars());
     }
-
     public function create()
     {
         abort_if(Gate::denies('languages create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return view('backend.site-languages.create');
     }
-
     public function edit($id)
     {
         abort_if(Gate::denies('languages edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $language = SiteLanguage::find($id);
         return view('backend.site-languages.edit', get_defined_vars());
     }
-
     public function store(SiteLanguageRequest $request)
     {
         abort_if(Gate::denies('languages create'), Response::HTTP_FORBIDDEN, '403 Forbidden');

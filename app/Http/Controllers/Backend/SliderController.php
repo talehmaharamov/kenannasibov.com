@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Slider;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
-use function GuzzleHttp\Promise\all;
 
 class SliderController extends Controller
 {
@@ -48,7 +46,6 @@ class SliderController extends Controller
             return redirect(route('backend.slider.index'));
         }
     }
-
     public function update(Request $request, $id)
     {
         abort_if(Gate::denies('slider edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -131,7 +128,6 @@ class SliderController extends Controller
             return redirect(route('backend.slider.index'));
         }
     }
-
     public function sliderStatus($id)
     {
         $status = Slider::where('id', $id)->value('status');
