@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="text-muted text-center font-size-18">
-                    <img src="{{asset('frontend/images/logos/logo.png')}}" height="90">
+                    <img src="{{asset('frontend/img/logo.png')}}" height="90">
                 </h4>
                 <div class="p-3">
                     <form class="form-horizontal mt-3 needs-validation" novalidate method="POST" action="{{ route('login') }}">
@@ -28,7 +28,7 @@
 
                         <div class="form-group mb-3 text-center row mt-3 pt-1">
                             <div class="col-12">
-                                <button class="btn w-100 waves-effect waves-light login-button"
+                                <button class="btn w-100 waves-effect waves-light primary_btn"
                                         type="submit">@lang('backend.login')
                                 </button>
                             </div>

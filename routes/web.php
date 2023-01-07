@@ -34,8 +34,7 @@ use Spatie\Analytics\AnalyticsFacade as Analytics;
 use Spatie\Analytics\Period;
 
 
-
-Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:sanctum','backendLanguage'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:sanctum', 'backendLanguage'], function () {
 
     //General
     Route::get('/change-language/{lang}', [LChangeLan::class, 'switchLang'])->name('switchLang');
@@ -44,21 +43,16 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/reports', [BReport::class, 'index'])->name('report');
     Route::get('/give-permission', [BPermission::class, 'givePermission'])->name('givePermission');
     Route::get('/give-permission-to-user/{user}', [BPermission::class, 'giveUserPermission'])->name('giveUserPermission');
-    Route::get('/contact-us/{id}/read', [BContact::class, 'readContact'])->name('readContact');
     Route::post('/give-permission-to-user-update', [BPermission::class, 'giveUserPermissionUpdate'])->name('givePermissionUserUpdate');
-    Route::get('/posts/pendings',[BPost::class,'pendingPost'])->name('pendingPost');
-    Route::get('/posts/pending/{id}',[BPost::class,'pendingPostId'])->name('pendingPostId');
-    Route::get('/posts/pending-post/{id}',[BPost::class,'ppost'])->name('ppost');
-    Route::get('posts/aprove/{id}',[BPost::class,'approvePost'])->name('approvePost');
-    Route::get('/slider/{id}/change-order',[BSlider::class,'sliderOrder'])->name('sliderOrder');
-    Route::get('/newsletter/history',[BNewsletter::class,'newsletterHistory'])->name('newsletterHistory');
+    Route::get('/slider/{id}/change-order', [BSlider::class, 'sliderOrder'])->name('sliderOrder');
+    Route::get('/newsletter/history', [BNewsletter::class, 'newsletterHistory'])->name('newsletterHistory');
+    Route::get('/contact/{id}/read', [BContact::class, 'readContact'])->name('readContact');
 
 
     //Statuses
     Route::get('/site-language/{id}/change-status', [BSiteLan::class, 'siteLanStatus'])->name('siteLanStatus');
     Route::get('/categories/{id}/change-status', [BCategory::class, 'categoryStatus'])->name('categoryStatus');
     Route::get('/settings/{id}/change-status', [BSetting::class, 'settingStatus'])->name('settingStatus');
-    Route::get('/directors/{id}/change-status', [BDirector::class, 'directorStatus'])->name('directorStatus');
     Route::get('/seo/{id}/change-status', [BMeta::class, 'seoStatus'])->name('seoStatus');
     Route::get('/slider/{id}/change-status', [BSlider::class, 'sliderStatus'])->name('sliderStatus');
     Route::get('/post/{id}/change-status', [BPost::class, 'postStatus'])->name('postStatus');
@@ -69,15 +63,12 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::get('/contact-us/{id}/delete', [BContact::class, 'delContactUS'])->name('delContactUS');
     Route::get('/settings/{id}/delete', [BSetting::class, 'delSetting'])->name('delSetting');
     Route::get('/users/{id}/delete', [BAdmin::class, 'delAdmin'])->name('delAdmin');
-    Route::get('/directors/{id}/delete', [BDirector::class, 'delDirector'])->name('delDirector');
     Route::get('/seo/{id}/delete', [BMeta::class, 'delSeo'])->name('delSeo');
-    Route::get('/forigners/{id}/delete', [BForigner::class, 'delForigner'])->name('delForigner');
     Route::get('/slider/{id}/delete', [BSlider::class, 'delSlider'])->name('delSlider');
     Route::get('/report/{id}/delete', [BReport::class, 'delReport'])->name('delReport');
     Route::get('/report/clean-all', [BReport::class, 'cleanAllReport'])->name('cleanAllReport');
     Route::get('/permission/{id}/delete', [BPermission::class, 'delPermission'])->name('delPermission');
     Route::get('/post/{id}/delete', [BPost::class, 'delPost'])->name('delPost');
-    Route::get('/newsletter/{id}/delete', [BNewsletter::class, 'delNewsletter'])->name('delNewsletter');
 
 
     //Resources
@@ -91,22 +82,23 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => 'auth:san
     Route::resource('/posts', BPost::class);
     Route::resource('/directors', BDirector::class);
     Route::resource('/seo', BMeta::class);
-    Route::resource('/newsletter', BNewsletter::class);
-    Route::resource('/forigners', BForigner::class);
     Route::resource('/statistics', BStatistics::class);
     Route::resource('/slider', BSlider::class);
     Route::resource('/permissions', BPermission::class);
 });
 
 Route::group(['prefix' => '/', 'as' => 'frontend.', 'middleware' => 'frontLanguage'], function () {
+    Route::get('contact', function () {
+        return view('frontend.contact-us.index');
+    })->name('contact-us-page');
     Route::get('/change-language/{dil}', [LChangeLan::class, 'frontLanguage'])->name('frontLanguage');
-    Route::post('/contact-us/send-message', [BContact::class, 'sendMessage'])->name('sendMessage');
+    Route::post('/contact-us/send-message', [FHome::class, 'sendMessage'])->name('sendMessage');
     Route::get('/', [FHome::class, 'index'])->name('index');
     Route::get('/about', [FAbout::class, 'index'])->name('about');
     Route::get('/post/{id}', [FPost::class, 'selectedPost'])->name('selectedPost');
     Route::get('/news', [FPost::class, 'allPosts'])->name('allPosts');
     Route::get('/categories/{slug}', [FCategory::class, 'index'])->name('selectedCategory');
-    Route::post('/search',[FHome::class,'search'])->name('search');
-    Route::post('/newsletter-add-new',[FHome::class,'newsletter'])->name('newsletter');
-    Route::get('/newsletter/{id}/{token}',[FHome::class,'verifyMail'])->name('verifyMail');
+    Route::post('/search', [FHome::class, 'search'])->name('search');
+    Route::post('/newsletter-add-new', [FHome::class, 'newsletter'])->name('newsletter');
+    Route::get('/newsletter/{id}/{token}', [FHome::class, 'verifyMail'])->name('verifyMail');
 });

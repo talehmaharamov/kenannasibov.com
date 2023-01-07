@@ -4,10 +4,10 @@
             <div class="navbar-brand-box">
                 <a href="" class="logo logo-light">
                      <span class="logo-sm justify-content-center">
-                         <img src="{{asset('frontend/images/logos/dirnislogo.png')}}" alt="logo-sm-light" height="38">
+                         <img src="{{asset('frontend/img/logo-white.png')}}" alt="logo-sm-light" height="38">
                      </span>
                     <span class="logo-lg justify-content-center">
-                        <img src="{{asset('frontend/images/logos/logod.png')}}" alt="logo-light" height="50">
+                        <img src="{{asset('frontend/img/logo.png')}}" alt="Kenan Nasibov" height="50">
                      </span>
                 </a>
             </div>

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Newsletter;
 use App\Models\Paylasim;
 use App\Models\PaylasimTranslation;
 use App\Models\Slider;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -69,38 +69,54 @@ class HomeController extends Controller
 
     public function newsletter(Request $request)
     {
-        try {
-            $validator = Validator::make($request->all(), [
-                'newsletterEmail' => 'unique:newsletter|required|max:255',
-            ]);
-            $subscriber =  Newsletter::create([
-                'mail' => $request->newsletterEmail,
-                'token' => md5(time()),
-                'status' => 0,
-            ]);
-            $data = [
-                'id' => $subscriber->id,
-                'mail' => $subscriber->mail,
-                'token' => $subscriber->token,
-            ];
-            Mail::send('backend.mail.newsletter', $data, function ($message) use ($subscriber) {
-                $message->to($subscriber->mail);
-                $message->subject('Email adresinizi təsdiq edin!');
-            });
-            return redirect()->back()->with('successMessage', __('messages.success'));
-        } catch (Exception $e) {
-            return redirect()->back()->with('errorMessage', __('messages.error'));
-        }
+//        try {
+        $validator = Validator::make($request->all(), [
+            'newsletterEmail' => 'unique:newsletter|required|max:255',
+        ]);
+        $subscriber = Newsletter::create([
+            'mail' => $request->newsletterEmail,
+            'token' => md5(time()),
+            'status' => 0,
+        ]);
+        $data = [
+            'id' => $subscriber->id,
+            'mail' => $subscriber->mail,
+            'token' => $subscriber->token,
+        ];
+        Mail::send('backend.mail.newsletter', $data, function ($message) use ($subscriber) {
+            $message->to($subscriber->mail);
+            $message->subject('Email adresinizi təsdiq edin!');
+        });
+//            return redirect()->back()->with('successMessage', __('messages.success'));
+//        } catch (Exception $e) {
+//            return redirect()->back()->with('errorMessage', __('messages.error'));
+//        }
     }
 
     public function verifyMail($id, $token)
     {
         $subscriber = Newsletter::find($id);
-        if($subscriber->token == $token){
+        if ($subscriber->token == $token) {
             $subscriber->update([
                 'status' => 1,
             ]);
             return view('frontend.includes.mail');
+        }
+    }
+
+    public function sendMessage(Request $request)
+    {
+        try {
+            $contact = new Contact();
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+            $contact->subject = $request->subject;
+            $contact->read_status = 0;
+            $contact->message = $request->message;
+            $contact->save();
+            return redirect()->back()->with('successMessage', __('messages.send-success'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('errorMessage', __('messages.error'));
         }
     }
 }

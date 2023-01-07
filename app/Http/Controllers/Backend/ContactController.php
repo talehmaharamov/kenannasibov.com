@@ -24,7 +24,7 @@ class ContactController extends Controller
             $contact = new Contact();
             $contact->name = $request->name;
             $contact->email = $request->email;
-            $contact->phone = $request->phone;
+            $contact->subject = $request->phone;
             $contact->read_status = 0;
             $contact->message = $request->message;
             $contact->save();

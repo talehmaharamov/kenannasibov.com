@@ -18,7 +18,7 @@ if (!function_exists('upload')) {
             $data['photo'] = 'images/' . $path . '/' . $filename;
             return $data['photo'];
         } catch (Exception $e) {
-            return redirect()->back()->with('messages', __('messages.error'));
+            return redirect()->back();
         }
     }
 }

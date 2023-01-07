@@ -23,7 +23,7 @@
                                 </div>
                                 <div>
                                     <h5>@lang('backend.email'): <a href="mailto:{{ $message->mail }}">{{ $message->email }}</a></h5>
-                                    <h5>@lang('backend.phone'): <a href="tel:{{ $message->phone }}">{{ $message->phone }}</a></h5>
+                                    <h5>@lang('backend.subject'): {{ $message->subject }}</h5>
                                 </div>
                                 <p>
                                     {{ $message->message }}

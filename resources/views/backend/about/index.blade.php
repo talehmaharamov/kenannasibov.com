@@ -32,7 +32,7 @@
                                         <div class="form-group row">
                                             <div class="mb-3">
                                                 <label>@lang('backend.title') <span class="text-danger">*</span></label>
-                                                <input type="text" name="title[{{ $lan->code }}]" class="form-control" required="" value="{{ $about->translate($lan->code)->title }}" data-parsley-minlength="6" placeholder="@lang('backend.title')">
+                                                <textarea id="elm2" type="text" name="title[{{$lan->code}}]" class="form-control" required="" rows="7" placeholder="">{!! $about->translate($lan->code)->title !!}</textarea>
                                                 <div class="valid-feedback">
                                                     @lang('backend.title') @lang('messages.is-correct')
                                                 </div>
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label>@lang('backend.description') <span class="text-danger">*</span></label>
-                                                <textarea type="text" name="description[{{$lan->code}}]" class="form-control" required="" rows="7" placeholder="">{{ $about->translate($lan->code)->description }}</textarea>
+                                                <textarea id="elm1" type="text" name="description[{{$lan->code}}]" class="form-control" required="" rows="7" placeholder="">{!! $about->translate($lan->code)->description !!}</textarea>
                                                 <div class="valid-feedback">
                                                     @lang('backend.description') @lang('messages.is-correct')
                                                 </div>
@@ -63,6 +63,16 @@
                                             @lang('backend.photo') @lang('messages.not-correct')
                                         </div>
                                     </div>
+                                        <div class="mb-3">
+                                            <label>@lang('backend.alt') <span class="text-danger">*</span></label>
+                                            <input type="text" name="alt" class="form-control" placeholder="@lang('backend.alt')">
+                                            <div class="valid-feedback">
+                                                @lang('backend.alt') @lang('messages.is-correct')
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                @lang('backend.alt') @lang('messages.not-correct')
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="mb-0 text-center">
                                     <div>
@@ -82,4 +92,10 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('backend/libs/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('backend/js/pages/form-editor.init.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 @endsection

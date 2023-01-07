@@ -46,7 +46,7 @@
                                 <td>
                                     <textarea disabled rows="4" cols="50">{{ ($report->properties)->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) }}</textarea>
                                 </td>
-                                <td>{{$report->created_at}}</td>
+                                <td>{{date('d.m.Y H:i:s',strtotime($report->created_at)) }}</td>
                                 @can('report delete')
                                 <td>
                                     <a class="btn btn-danger" href="{{ route('backend.delReport',['id'=>$report->id]) }}">
